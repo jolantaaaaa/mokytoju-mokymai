@@ -274,23 +274,6 @@
 
     .section-head{ margin:0 0 20px; }
 
-    /* ---- finish / cheat sheet / footer (full mobile audit) ---- */
-    .finish{ padding:28px 18px; border-radius:18px; margin:36px 0 32px; }
-    .finish p{ font-size:14.5px; margin:0 0 20px; }
-    .finish-flow{
-      flex-wrap:nowrap; overflow-x:auto; -webkit-overflow-scrolling:touch;
-      gap:6px; margin:0 -18px 24px; padding:0 18px 6px; scrollbar-width:thin;
-    }
-    .finish-flow span{ font-size:12px; padding:6px 10px; white-space:nowrap; flex:0 0 auto; }
-    .finish-flow .arrow{ font-size:13px; flex:0 0 auto; }
-    .cheat{ padding:18px 16px; border-radius:14px; }
-    .cheat p.lbl{ font-size:15px; margin:0 0 10px; }
-    .cheat ol{ padding-left:18px; }
-    .cheat li{ font-size:16px; line-height:1.5; margin-bottom:10px; }
-    .cheat code{ font-size:.88em; padding:1px 5px; white-space:normal; }
-    .finish .links{ margin-top:20px; gap:14px; }
-    .finish .links a{ font-size:13.5px; }
-
     footer{ padding:28px 20px 44px; }
   }
 
@@ -298,15 +281,28 @@
   .finish{ background:var(--ink); color:#fff; border-radius:24px; padding:56px 48px; margin:64px 0 56px; max-width:100%; }
   .finish h2{ color:#fff; font-size:clamp(22px,5vw,30px); margin:0 0 14px; }
   .finish p{ color:#C7CCDA; max-width:60ch; margin:0 0 28px; }
-  .finish-flow{ display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:34px; }
-  .finish-flow span{ background:rgba(255,255,255,.08); padding:8px 14px; border-radius:10px; font-size:14px; font-weight:600; }
-  .finish-flow .arrow{ color:#6B7280; }
-  .cheat{ background:rgba(255,255,255,.06); border-radius:16px; padding:26px 28px; }
-  .cheat p.lbl{ font-weight:700; margin:0 0 12px; font-family:'Space Grotesk',sans-serif; }
-  .cheat ol{ margin:0; padding-left:20px; }
-  .cheat li{ margin-bottom:8px; color:#E3E6EE; }
-  .finish .links{ margin-top:26px; display:flex; gap:22px; flex-wrap:wrap; }
-  .finish .links a{ color:#AFC0FF; font-weight:600; font-size:14.5px; }
+  .finish-steps{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:32px; }
+  .fstep{
+    background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); border-radius:16px;
+    padding:20px 22px; display:flex; flex-direction:column; gap:12px; transition:transform .2s ease, background .2s ease;
+  }
+  .fstep:hover{ background:rgba(255,255,255,.09); transform:translateY(-2px); }
+  .fnum{
+    width:34px; height:34px; border-radius:10px; background:linear-gradient(120deg,var(--blue),var(--violet));
+    display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:15px; color:#fff;
+  }
+  .fstep p{ margin:0; font-size:14.5px; line-height:1.5; color:#E3E6EE; }
+  .fstep code{ background:rgba(255,255,255,.14); color:#fff; }
+
+  .watch-btn{
+    display:inline-flex; align-items:center; gap:10px; background:#fff; color:var(--ink); text-decoration:none;
+    padding:16px 28px; border-radius:12px; font-weight:700; font-size:15.5px;
+    box-shadow:0 8px 22px rgba(0,0,0,.25); transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .watch-btn:hover{ transform:translateY(-2px); box-shadow:0 12px 28px rgba(0,0,0,.32); }
+
+  @media (max-width:1024px){ .finish-steps{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:600px){ .finish-steps{ grid-template-columns:1fr; gap:12px; } .fstep{ padding:16px 18px; } .watch-btn{ width:100%; justify-content:center; } }
 
   footer{ padding:36px 0 60px; text-align:center; color:var(--ink-soft); font-size:14px; }
   footer .name{ color:var(--ink); font-weight:700; font-family:'Space Grotesk',sans-serif; font-size:15.5px; margin-bottom:4px; }
@@ -314,7 +310,7 @@
   footer .copy{ font-size:12.5px; color:#9AA2AF; }
 
   @media (max-width:860px){ .finish{ padding:36px 24px; } }
-  @media (max-width:420px){ .finish{ padding:26px 16px; } .cheat{ padding:20px 16px; } }
+  @media (max-width:420px){ .finish{ padding:26px 16px; } }
 
   /* ---------- lightbox ---------- */
   #lightbox{
@@ -863,30 +859,15 @@
   <section class="finish reveal" id="finish">
     <h2>Viskas atlikta!</h2>
     <p>Turite visiškai veikiantį Moodle testą: klausimus parengė ir XML formatu eksportavo ChatGPT, o jūs juos importavote į klausimų banką, pridėjote į testą ir patikrinote. Mokiniai jau gali jį spręsti.</p>
-    <div class="finish-flow">
-      <span>ChatGPT</span><span class="arrow">→</span>
-      <span>klausimai</span><span class="arrow">→</span>
-      <span>XML</span><span class="arrow">→</span>
-      <span>Moodle</span><span class="arrow">→</span>
-      <span>importas</span><span class="arrow">→</span>
-      <span>klausimų bankas</span><span class="arrow">→</span>
-      <span>testas</span><span class="arrow">→</span>
-      <span>patikrinimas</span>
+    <div class="finish-steps">
+      <div class="fstep"><div class="fnum">1</div><p>ChatGPT – paruoškite klausimus Moodle XML formatu.</p></div>
+      <div class="fstep"><div class="fnum">2</div><p>Išsaugokite failą su <code>.xml</code> plėtiniu.</p></div>
+      <div class="fstep"><div class="fnum">3</div><p>Moodle – sukurkite naują „Testas“ veiklą.</p></div>
+      <div class="fstep"><div class="fnum">4</div><p>Klausimų bankas → Importuoti → įkelkite XML failą.</p></div>
+      <div class="fstep"><div class="fnum">5</div><p>Teste → „Įtraukti klausimą“ → pasirinkite kategoriją → įkelkite klausimus.</p></div>
+      <div class="fstep"><div class="fnum">6</div><p>Peržiūrėkite ir patikrinkite testą prieš skelbdami mokiniams.</p></div>
     </div>
-    <div class="cheat">
-      <p class="lbl">Kitą kartą trumpai</p>
-      <ol>
-        <li>ChatGPT → paprašykite klausimų + Moodle XML formato.</li>
-        <li>Išsaugokite failą su <code>.xml</code> plėtiniu.</li>
-        <li>Moodle → sukurkite naują „Testas“ veiklą.</li>
-        <li>Klausimų bankas → Importuoti → įkelkite XML failą.</li>
-        <li>Teste → „Įtraukti klausimą“ → pasirinkite kategoriją → įkelkite.</li>
-        <li>Peržiūrėkite testą prieš skelbdami mokiniams.</li>
-      </ol>
-    </div>
-    <div class="links">
-      <a href="https://youtu.be/wtPYJjsMOTM" target="_blank" rel="noopener">▶ Vaizdo pamoka: XML importas į Moodle</a>
-    </div>
+    <a href="https://youtu.be/wtPYJjsMOTM" target="_blank" rel="noopener" class="watch-btn">▶ Žiūrėti vaizdo pamoką: XML importas į Moodle</a>
   </section>
 
 </div>
