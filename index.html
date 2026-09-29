@@ -138,6 +138,7 @@
   @media (prefers-reduced-motion:reduce){ .step-panel.anim-out,.step-panel.anim-in{ animation:none; } }
 
   .panel-grid{ display:grid; grid-template-columns:35% 65%; gap:48px; align-items:start; }
+  .panel-extra{ margin-top:16px; }
 
   .step-tag{ font-size:12.5px; font-weight:700; letter-spacing:.03em; margin-bottom:8px; display:inline-block;
     padding:5px 12px; border-radius:100px; text-transform:uppercase; }
@@ -237,6 +238,36 @@
     .hero-img-wrap{ order:-1; }
   }
 
+  /* ================= MOBILE HERO COMPRESSION (≤600px) ================= */
+  @media (max-width:600px){
+    header.hero{ padding:18px 0 14px; }
+    .hero-grid{ gap:16px; }
+    .hero-img-wrap{ aspect-ratio:16/9; }
+    .hero-img-wrap img{ aspect-ratio:16/9; }
+    .badge{ font-size:12px; padding:4px 11px; margin-bottom:10px; }
+    h1{ font-size:clamp(30px,8vw,42px); line-height:1.08; margin:0 0 8px; }
+    .hero p.lede{ font-size:14.5px; line-height:1.45; margin:0 0 14px; }
+
+    .hero-meta{ display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:16px; }
+    .hero-meta div{ font-size:11px; line-height:1.25; }
+    .hero-meta strong{ font-size:15px; margin-bottom:1px; }
+
+    .btn{ width:100%; justify-content:center; padding:13px 20px; font-size:15px; }
+
+    .legend{ margin:14px 0 14px; gap:10px; font-size:12.5px; row-gap:6px; }
+    .legend > span:not(.principle){ gap:5px; }
+    .legend .principle{
+      display:block; width:100%; background:var(--card); border:1px solid var(--line);
+      border-radius:12px; padding:10px 14px; font-size:12.5px; line-height:1.4;
+    }
+
+    .flow{ padding:14px 16px; gap:6px; margin-bottom:32px; }
+    .flow .f{ font-size:12.5px; padding:6px 10px; }
+    .flow .arrow{ font-size:13px; }
+
+    .section-head{ margin:0 0 20px; }
+  }
+
   /* ---------- ending ---------- */
   .finish{ background:var(--ink); color:#fff; border-radius:24px; padding:56px 48px; margin:64px 0 56px; max-width:100%; }
   .finish h2{ color:#fff; font-size:clamp(22px,5vw,30px); margin:0 0 14px; }
@@ -302,7 +333,7 @@
   <div class="legend reveal">
     <span><span class="dot violet"></span> ChatGPT žingsniai</span>
     <span><span class="dot blue"></span> Moodle žingsniai</span>
-    <span>Principas: <b>Pažiūrėk → atlik → patikrink → tęsk toliau.</b></span>
+    <span class="principle">Principas: <b>Pažiūrėk → atlik → patikrink → tęsk toliau.</b></span>
   </div>
 
   <div class="flow reveal">
@@ -364,7 +395,15 @@
               <b>Svarbu</b>
               Konkrečiai paprašykite formato „Moodle XML“ — priešingu atveju DI gali pateikti paprastą tekstą, kurio Moodle neatpažins.
             </div>
-            <details class="video-toggle">
+            </div>
+          <div class="panel-media">
+            <div class="shot" data-full="images/01-chatgpt-klausimai.jpg">
+              <img src="images/01-chatgpt-klausimai.jpg" alt="ChatGPT pokalbis, kuriame aprašomi 20 klausimų testo reikalavimai ir prašoma XML kodo" loading="lazy">
+              <span class="zoomtag">🔍 Padidinti</span>
+            </div>
+          </div>
+            <div class="panel-extra">
+              <details class="video-toggle">
               <summary>Pažiūrėti, kaip tai atliekama vaizdo pamokoje</summary>
               <div class="video-mount" data-start="360"></div>
               <a class="full-video-link" href="https://youtu.be/wtPYJjsMOTM" target="_blank" rel="noopener">Žiūrėti visą vaizdo pamoką ↗</a>
@@ -373,14 +412,8 @@
               <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
               Atlikta – galima tęsti
             </div>
-          </div>
-          <div class="panel-media">
-            <div class="shot" data-full="images/01-chatgpt-klausimai.jpg">
-              <img src="images/01-chatgpt-klausimai.jpg" alt="ChatGPT pokalbis, kuriame aprašomi 20 klausimų testo reikalavimai ir prašoma XML kodo" loading="lazy">
-              <span class="zoomtag">🔍 Padidinti</span>
             </div>
           </div>
-        </div>
       </article>
 
       <!-- STEP 2 -->
@@ -403,7 +436,15 @@
               <b>Dažna klaida</b>
               Patikrinkite, kad failas išsaugotas su <code>.xml</code> plėtiniu, pvz. <code>testas.xml</code>.
             </div>
-            <details class="video-toggle">
+            </div>
+          <div class="panel-media">
+            <div class="shot" data-full="images/02-xml-issaugojimas.jpg">
+              <img src="images/02-xml-issaugojimas.jpg" alt="Failo išsaugojimo langas su pavadinimu testas.xml ir matomu XML turiniu" loading="lazy">
+              <span class="zoomtag">🔍 Padidinti</span>
+            </div>
+          </div>
+            <div class="panel-extra">
+              <details class="video-toggle">
               <summary>Pažiūrėti, kaip tai atliekama vaizdo pamokoje</summary>
               <div class="video-mount" data-start="450"></div>
               <a class="full-video-link" href="https://youtu.be/wtPYJjsMOTM" target="_blank" rel="noopener">Žiūrėti visą vaizdo pamoką ↗</a>
@@ -412,14 +453,8 @@
               <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
               Atlikta – galima tęsti
             </div>
-          </div>
-          <div class="panel-media">
-            <div class="shot" data-full="images/02-xml-issaugojimas.jpg">
-              <img src="images/02-xml-issaugojimas.jpg" alt="Failo išsaugojimo langas su pavadinimu testas.xml ir matomu XML turiniu" loading="lazy">
-              <span class="zoomtag">🔍 Padidinti</span>
             </div>
           </div>
-        </div>
       </article>
 
       <!-- STEP 3 -->
@@ -438,16 +473,7 @@
               </ol>
             </div>
             <p class="step-see"><b>Ką turite pamatyti?</b> Testo nustatymų formą su skiltimis „Laikas“, „Įvertinimas“, „Maketas“, „Klausimo veikimas“ ir kt.</p>
-            <details class="video-toggle">
-              <summary>Pažiūrėti, kaip tai atliekama vaizdo pamokoje</summary>
-              <div class="video-mount" data-start="180"></div>
-              <a class="full-video-link" href="https://youtu.be/wtPYJjsMOTM" target="_blank" rel="noopener">Žiūrėti visą vaizdo pamoką ↗</a>
-            </details>
-            <div class="step-done">
-              <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Atlikta – galima tęsti
             </div>
-          </div>
           <div class="panel-media">
             <div class="shot" data-full="images/03-naujas-testas.jpg">
               <img src="images/03-naujas-testas.jpg" alt="Naujo Moodle testo nustatymų forma su lauku Pavadinimas" loading="lazy">
@@ -456,7 +482,18 @@
               <span class="zoomtag">🔍 Padidinti</span>
             </div>
           </div>
-        </div>
+            <div class="panel-extra">
+              <details class="video-toggle">
+              <summary>Pažiūrėti, kaip tai atliekama vaizdo pamokoje</summary>
+              <div class="video-mount" data-start="180"></div>
+              <a class="full-video-link" href="https://youtu.be/wtPYJjsMOTM" target="_blank" rel="noopener">Žiūrėti visą vaizdo pamoką ↗</a>
+            </details>
+            <div class="step-done">
+              <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Atlikta – galima tęsti
+            </div>
+            </div>
+          </div>
       </article>
 
       <!-- STEP 4 -->
@@ -475,16 +512,7 @@
               </ol>
             </div>
             <p class="step-see"><b>Ką turite pamatyti?</b> Testo puslapį su mygtuku „Įtraukti klausimą“, eilute „Reikia atlikti: Gauti įvertinimą“ ir geltonu pranešimu apie neįtrauktus klausimus.</p>
-            <details class="video-toggle">
-              <summary>Pažiūrėti, kaip tai atliekama vaizdo pamokoje</summary>
-              <div class="video-mount" data-start="540"></div>
-              <a class="full-video-link" href="https://youtu.be/wtPYJjsMOTM" target="_blank" rel="noopener">Žiūrėti visą vaizdo pamoką ↗</a>
-            </details>
-            <div class="step-done">
-              <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Atlikta – galima tęsti
             </div>
-          </div>
           <div class="panel-media">
             <div class="shot" data-full="images/04-testo-puslapis.jpg">
               <img src="images/04-testo-puslapis.jpg" alt="Tuščias Moodle testo puslapis su mygtuku Įtraukti klausimą ir pranešimu Klausimai dar neįtraukti" loading="lazy">
@@ -493,7 +521,18 @@
               <span class="zoomtag">🔍 Padidinti</span>
             </div>
           </div>
-        </div>
+            <div class="panel-extra">
+              <details class="video-toggle">
+              <summary>Pažiūrėti, kaip tai atliekama vaizdo pamokoje</summary>
+              <div class="video-mount" data-start="540"></div>
+              <a class="full-video-link" href="https://youtu.be/wtPYJjsMOTM" target="_blank" rel="noopener">Žiūrėti visą vaizdo pamoką ↗</a>
+            </details>
+            <div class="step-done">
+              <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Atlikta – galima tęsti
+            </div>
+            </div>
+          </div>
       </article>
 
       <!-- STEP 5 -->
@@ -512,7 +551,15 @@
               </ol>
             </div>
             <p class="step-see"><b>Ką turite pamatyti?</b> Išskleistą meniu su punktais „Klausimai“, „Eksportuoti“, „Importuoti“ ir „Kategorijos“.</p>
-            <details class="video-toggle">
+            </div>
+          <div class="panel-media">
+            <div class="shot" data-full="images/05-importuoti-meniu.jpg">
+              <img src="images/05-importuoti-meniu.jpg" alt="Klausimų banko išskleidžiamas meniu su pasirinkimu Importuoti" loading="lazy">
+              <span class="zoomtag">🔍 Padidinti</span>
+            </div>
+          </div>
+            <div class="panel-extra">
+              <details class="video-toggle">
               <summary>Pažiūrėti, kaip tai atliekama vaizdo pamokoje</summary>
               <div class="video-mount" data-start="480"></div>
               <a class="full-video-link" href="https://youtu.be/wtPYJjsMOTM" target="_blank" rel="noopener">Žiūrėti visą vaizdo pamoką ↗</a>
@@ -521,14 +568,8 @@
               <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
               Atlikta – galima tęsti
             </div>
-          </div>
-          <div class="panel-media">
-            <div class="shot" data-full="images/05-importuoti-meniu.jpg">
-              <img src="images/05-importuoti-meniu.jpg" alt="Klausimų banko išskleidžiamas meniu su pasirinkimu Importuoti" loading="lazy">
-              <span class="zoomtag">🔍 Padidinti</span>
             </div>
           </div>
-        </div>
       </article>
 
       <!-- STEP 6 -->
@@ -558,7 +599,15 @@
               </ul>
               <p class="go">Jeigu visi atsakymai „Taip“ — tęskite prie 7 žingsnio.</p>
             </div>
-            <details class="video-toggle">
+            </div>
+          <div class="panel-media">
+            <div class="shot" data-full="images/06-xml-atpazintas.jpg">
+              <img src="images/06-xml-atpazintas.jpg" alt="Moodle pranešimas Importuojami 20 klausimai iš failo ir klausimų sąrašo peržiūra" loading="lazy">
+              <span class="zoomtag">🔍 Padidinti</span>
+            </div>
+          </div>
+            <div class="panel-extra">
+              <details class="video-toggle">
               <summary>Pažiūrėti, kaip tai atliekama vaizdo pamokoje</summary>
               <div class="video-mount" data-start="500"></div>
               <a class="full-video-link" href="https://youtu.be/wtPYJjsMOTM" target="_blank" rel="noopener">Žiūrėti visą vaizdo pamoką ↗</a>
@@ -567,14 +616,8 @@
               <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
               Atlikta – galima tęsti
             </div>
-          </div>
-          <div class="panel-media">
-            <div class="shot" data-full="images/06-xml-atpazintas.jpg">
-              <img src="images/06-xml-atpazintas.jpg" alt="Moodle pranešimas Importuojami 20 klausimai iš failo ir klausimų sąrašo peržiūra" loading="lazy">
-              <span class="zoomtag">🔍 Padidinti</span>
             </div>
           </div>
-        </div>
       </article>
 
       <!-- STEP 7 -->
@@ -593,7 +636,15 @@
               </ol>
             </div>
             <p class="step-see"><b>Ką turite pamatyti?</b> Lentelę su visais importuotais klausimais, kiekvienam nurodyta būsena „Paruoštas“, versija „v1“ ir jūsų vardas kaip autorius.</p>
-            <details class="video-toggle">
+            </div>
+          <div class="panel-media">
+            <div class="shot" data-full="images/07-klausimu-bankas.jpg">
+              <img src="images/07-klausimu-bankas.jpg" alt="Klausimų banko lentelė su importuotais klausimais, autoriumi ir data" loading="lazy">
+              <span class="zoomtag">🔍 Padidinti</span>
+            </div>
+          </div>
+            <div class="panel-extra">
+              <details class="video-toggle">
               <summary>Pažiūrėti, kaip tai atliekama vaizdo pamokoje</summary>
               <div class="video-mount" data-start="520"></div>
               <a class="full-video-link" href="https://youtu.be/wtPYJjsMOTM" target="_blank" rel="noopener">Žiūrėti visą vaizdo pamoką ↗</a>
@@ -602,14 +653,8 @@
               <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
               Atlikta – galima tęsti
             </div>
-          </div>
-          <div class="panel-media">
-            <div class="shot" data-full="images/07-klausimu-bankas.jpg">
-              <img src="images/07-klausimu-bankas.jpg" alt="Klausimų banko lentelė su importuotais klausimais, autoriumi ir data" loading="lazy">
-              <span class="zoomtag">🔍 Padidinti</span>
             </div>
           </div>
-        </div>
       </article>
 
       <!-- STEP 8 -->
@@ -632,16 +677,7 @@
               <b>Jeigu nematote šio mygtuko...</b>
               Įsitikinkite, kad esate testo skirtuke „Klausimai“, o ne „Parametrai“ ar „Rezultatai“ — mygtukas „Įtraukti klausimą“ rodomas tik ten.
             </div>
-            <details class="video-toggle">
-              <summary>Pažiūrėti, kaip tai atliekama vaizdo pamokoje</summary>
-              <div class="video-mount" data-start="560"></div>
-              <a class="full-video-link" href="https://youtu.be/wtPYJjsMOTM" target="_blank" rel="noopener">Žiūrėti visą vaizdo pamoką ↗</a>
-            </details>
-            <div class="step-done">
-              <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Atlikta – galima tęsti
             </div>
-          </div>
           <div class="panel-media">
             <div class="shot" data-full="images/08-iklimas-i-testa.jpg">
               <img src="images/08-iklimas-i-testa.jpg" alt="Langas Įtraukti iš klausimų banko pabaigoje su pasirinkta kategorija ir mygtuku Įkelti pasirinktus klausimus į testą" loading="lazy">
@@ -650,7 +686,18 @@
               <span class="zoomtag">🔍 Padidinti</span>
             </div>
           </div>
-        </div>
+            <div class="panel-extra">
+              <details class="video-toggle">
+              <summary>Pažiūrėti, kaip tai atliekama vaizdo pamokoje</summary>
+              <div class="video-mount" data-start="560"></div>
+              <a class="full-video-link" href="https://youtu.be/wtPYJjsMOTM" target="_blank" rel="noopener">Žiūrėti visą vaizdo pamoką ↗</a>
+            </details>
+            <div class="step-done">
+              <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Atlikta – galima tęsti
+            </div>
+            </div>
+          </div>
       </article>
 
       <!-- STEP 9 -->
@@ -678,7 +725,15 @@
               </ul>
               <p class="go">Testas jau visiškai veikiantis. Toliau — nebūtinas, bet rekomenduojamas žingsnis: gražus aprašymas mokiniams.</p>
             </div>
-            <details class="video-toggle">
+            </div>
+          <div class="panel-media">
+            <div class="shot" data-full="images/09-galutinis-patikrinimas.jpg">
+              <img src="images/09-galutinis-patikrinimas.jpg" alt="Veikiantis Moodle testas su klausimu ir Testo naršymas tinkleliu dešinėje" loading="lazy">
+              <span class="zoomtag">🔍 Padidinti</span>
+            </div>
+          </div>
+            <div class="panel-extra">
+              <details class="video-toggle">
               <summary>Pažiūrėti, kaip tai atliekama vaizdo pamokoje</summary>
               <div class="video-mount" data-start="630"></div>
               <a class="full-video-link" href="https://youtu.be/wtPYJjsMOTM" target="_blank" rel="noopener">Žiūrėti visą vaizdo pamoką ↗</a>
@@ -687,14 +742,8 @@
               <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
               Atlikta – galima tęsti
             </div>
-          </div>
-          <div class="panel-media">
-            <div class="shot" data-full="images/09-galutinis-patikrinimas.jpg">
-              <img src="images/09-galutinis-patikrinimas.jpg" alt="Veikiantis Moodle testas su klausimu ir Testo naršymas tinkleliu dešinėje" loading="lazy">
-              <span class="zoomtag">🔍 Padidinti</span>
             </div>
           </div>
-        </div>
       </article>
 
       <!-- STEP 10 -->
@@ -713,7 +762,15 @@
               </ol>
             </div>
             <p class="step-see"><b>Ką turite pamatyti?</b> Suformatuotą tekstą su aiškiomis antraštėmis (pvz. „Testo tikslas“, „Testo informacija“, „Prieš pradėdami“, „Sėkmės!“).</p>
-            <details class="video-toggle">
+            </div>
+          <div class="panel-media">
+            <div class="shot" data-full="images/10-aprasymo-parengimas.jpg">
+              <img src="images/10-aprasymo-parengimas.jpg" alt="ChatGPT sugeneruotas testo aprašymas su antraštėmis Testo tikslas, Testo informacija, Prieš pradėdami, Sėkmės" loading="lazy">
+              <span class="zoomtag">🔍 Padidinti</span>
+            </div>
+          </div>
+            <div class="panel-extra">
+              <details class="video-toggle">
               <summary>Pažiūrėti, kaip tai atliekama vaizdo pamokoje</summary>
               <div class="video-mount" data-start="720"></div>
               <a class="full-video-link" href="https://youtu.be/wtPYJjsMOTM" target="_blank" rel="noopener">Žiūrėti visą vaizdo pamoką ↗</a>
@@ -722,14 +779,8 @@
               <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
               Atlikta – galima tęsti
             </div>
-          </div>
-          <div class="panel-media">
-            <div class="shot" data-full="images/10-aprasymo-parengimas.jpg">
-              <img src="images/10-aprasymo-parengimas.jpg" alt="ChatGPT sugeneruotas testo aprašymas su antraštėmis Testo tikslas, Testo informacija, Prieš pradėdami, Sėkmės" loading="lazy">
-              <span class="zoomtag">🔍 Padidinti</span>
             </div>
           </div>
-        </div>
       </article>
 
       <!-- STEP 11 -->
@@ -748,7 +799,15 @@
               </ol>
             </div>
             <p class="step-see"><b>Ką turite pamatyti?</b> Atvirą įrankių meniu su punktu „Šaltinio kodas“ virš aprašymo teksto lauko.</p>
-            <details class="video-toggle">
+            </div>
+          <div class="panel-media">
+            <div class="shot" data-full="images/11-aprasymo-ikelimas.jpg">
+              <img src="images/11-aprasymo-ikelimas.jpg" alt="Moodle teksto redaktoriaus įrankių meniu su pasirinkimu Šaltinio kodas" loading="lazy">
+              <span class="zoomtag">🔍 Padidinti</span>
+            </div>
+          </div>
+            <div class="panel-extra">
+              <details class="video-toggle">
               <summary>Pažiūrėti, kaip tai atliekama vaizdo pamokoje</summary>
               <div class="video-mount" data-start="810"></div>
               <a class="full-video-link" href="https://youtu.be/wtPYJjsMOTM" target="_blank" rel="noopener">Žiūrėti visą vaizdo pamoką ↗</a>
@@ -757,14 +816,8 @@
               <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
               Atlikta – testas visiškai paruoštas!
             </div>
-          </div>
-          <div class="panel-media">
-            <div class="shot" data-full="images/11-aprasymo-ikelimas.jpg">
-              <img src="images/11-aprasymo-ikelimas.jpg" alt="Moodle teksto redaktoriaus įrankių meniu su pasirinkimu Šaltinio kodas" loading="lazy">
-              <span class="zoomtag">🔍 Padidinti</span>
             </div>
           </div>
-        </div>
       </article>
 
     </div>
