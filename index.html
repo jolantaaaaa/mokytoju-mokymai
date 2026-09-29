@@ -37,7 +37,7 @@
   h1,h2,h3,.disp{ font-family:'Space Grotesk',sans-serif; font-weight:700; letter-spacing:-.01em; color:var(--ink); }
   img{max-width:100%; height:auto; display:block;}
   iframe{ max-width:100%; }
-  .wrap{ width:100%; max-width:1120px; margin:0 auto; padding:0 20px; }
+  .wrap{ width:100%; max-width:1800px; margin:0 auto; padding:0 clamp(20px,3vw,56px); }
   a{ color:var(--blue); }
   code{ background:#EEF1F7; padding:1px 6px; border-radius:5px; font-size:.92em; word-break:break-word; }
 
@@ -59,11 +59,17 @@
   .hero-meta div{ font-size:14px; color:var(--ink-soft); min-width:0; }
   .hero-meta strong{ display:block; font-family:'Space Grotesk',sans-serif; font-size:19px; color:var(--ink); font-weight:700; }
   .btn{
-    display:inline-flex; align-items:center; gap:10px; background:var(--ink); color:#fff; text-decoration:none;
-    padding:14px 26px; border-radius:12px; font-weight:600; font-size:15.5px; border:none; cursor:pointer;
-    transition:transform .2s ease, box-shadow .2s ease;
+    display:inline-flex; align-items:center; justify-content:center; gap:12px;
+    background:linear-gradient(120deg, var(--blue), var(--violet)); color:#fff; text-decoration:none;
+    padding:19px 38px; border-radius:14px; font-weight:700; font-size:17.5px; border:none; cursor:pointer;
+    box-shadow:0 10px 28px rgba(70,70,220,.28);
+    transition:transform .2s ease, box-shadow .2s ease, filter .2s ease;
   }
-  .btn:hover{ transform:translateY(-2px); box-shadow:0 10px 24px rgba(27,36,48,.18); }
+  .btn:hover{ transform:translateY(-3px); box-shadow:0 16px 36px rgba(70,70,220,.38); filter:brightness(1.05); }
+  .btn:active{ transform:translateY(-1px); box-shadow:0 8px 20px rgba(70,70,220,.3); }
+  .btn .arrow{ transition:transform .2s ease; }
+  .btn:hover .arrow{ transform:translateX(3px); }
+  .cta-hint{ font-size:13.5px; color:var(--ink-soft); margin:12px 0 0; }
   .hero-img-wrap{ position:relative; }
   .hero-img-wrap::before{
     content:""; position:absolute; inset:14px -14px -14px 14px; background:var(--violet-soft);
@@ -107,7 +113,7 @@
      INTERACTIVE LEARNING MODE — one step, one screen
      ====================================================== */
   .learn-section{ background:#EEF1F8; padding:56px 0 72px; max-width:100%; }
-  .learn-wrap{ width:100%; max-width:1700px; margin:0 auto; padding:0 20px; }
+  .learn-wrap{ width:100%; max-width:1800px; margin:0 auto; padding:0 clamp(20px,3vw,56px); }
 
   .learn-top{
     display:flex; align-items:center; gap:22px; margin-bottom:30px; flex-wrap:wrap;
@@ -252,7 +258,8 @@
     .hero-meta div{ font-size:11px; line-height:1.25; }
     .hero-meta strong{ font-size:15px; margin-bottom:1px; }
 
-    .btn{ width:100%; justify-content:center; padding:13px 20px; font-size:15px; }
+    .btn{ width:100%; justify-content:center; padding:16px 20px; font-size:16px; }
+    .cta-hint{ display:none; }
 
     .legend{ margin:14px 0 14px; gap:10px; font-size:12.5px; row-gap:6px; }
     .legend > span:not(.principle){ gap:5px; }
@@ -322,7 +329,8 @@
           <div><strong>11</strong>aiškių žingsnių</div>
           <div><strong>2</strong>aplinkos: ChatGPT ir Moodle</div>
         </div>
-        <a href="#learnMode" class="btn" id="startBtn">Pradėti mokymą ↓</a>
+        <a href="#learnMode" class="btn" id="startBtn">Pradėti mokymą <span class="arrow">→</span></a>
+        <p class="cta-hint">Pradėkite nuo 1 žingsnio. Toliau sistema ves jus nuosekliai.</p>
       </div>
       <div class="hero-img-wrap reveal">
         <img src="images/hero.jpg" alt="Moodle testo aplinka nešiojamo kompiuterio ekrane">
@@ -333,7 +341,7 @@
   <div class="legend reveal">
     <span><span class="dot violet"></span> ChatGPT žingsniai</span>
     <span><span class="dot blue"></span> Moodle žingsniai</span>
-    <span class="principle">Principas: <b>Pažiūrėk → atlik → patikrink → tęsk toliau.</b></span>
+    <span class="principle"><b>Peržiūrėkite žingsnį, atlikite nurodytus veiksmus, patikrinkite rezultatą ir tęskite.</b></span>
   </div>
 
   <div class="flow reveal">
@@ -346,7 +354,7 @@
 
   <section class="video-block reveal" id="video">
     <div class="section-head">
-      <p class="kicker">Geriau matyti gyvai?</p>
+      <p class="kicker">Vaizdo pamoka</p>
       <h2>Peržiūrėkite vaizdo pamoką</h2>
       <p>Tai mano parengta vaizdo pamoka, kurioje visas procesas parodomas praktiškai. Žemiau pateiktame mokymo režime tuos pačius veiksmus atliksite patys, žingsnis po žingsnio.</p>
     </div>
@@ -358,7 +366,7 @@
   <div class="section-head reveal">
     <p class="kicker">Instrukcija žingsnis po žingsnio</p>
     <h2>Nuo idėjos iki paruošto testo</h2>
-    <p>Interaktyvus mokymo režimas — vienu metu matysite tik vieną žingsnį. Naudokitės mygtukais apačioje arba žingsnių taškeliais viršuje.</p>
+    <p>Interaktyvus mokymo režimas: vienu metu matysite tik vieną žingsnį. Naudokitės mygtukais apačioje arba žingsnių taškeliais viršuje.</p>
   </div>
 
 </div>
@@ -386,14 +394,14 @@
               <p>Atlikite:</p>
               <ol>
                 <li>Atsidarykite ChatGPT (arba kitą DI pokalbių įrankį).</li>
-                <li>Aprašykite temą, klausimų skaičių ir formatą, pvz.: „sukurk Moodle testą, kurį kelsiu mokiniams su keliais galimais variantais kuriuos prisegu“.</li>
+                <li>Aprašykite temą, klausimų skaičių ir formatą, pvz.: „sukurk Moodle testą su kelių atsakymų variantų klausimais, kuriuos galėsiu iš karto importuoti“.</li>
                 <li>Kai klausimai paruošti, paprašykite: „gerai, pateik XML kodą“.</li>
               </ol>
             </div>
-            <p class="step-see"><b>Ką turite pamatyti?</b> ChatGPT patvirtina, kokio testo sukūrė (klausimų skaičius, maišomi atsakymai, paaiškinimai po kiekvieno klausimo) ir yra pasiruošęs pateikti Moodle XML kodą.</p>
+            <p class="step-see"><b>Ką turėtumėte matyti?</b> ChatGPT pateikia parengtus testo klausimus pagal jūsų nurodytus reikalavimus (klausimų skaičių, sumaišytus atsakymus, paaiškinimus) ir pasiūlo Moodle XML kodą.</p>
             <div class="callout important">
               <b>Svarbu</b>
-              Konkrečiai paprašykite formato „Moodle XML“ — priešingu atveju DI gali pateikti paprastą tekstą, kurio Moodle neatpažins.
+              Pasirinkite „Moodle XML“ formatą. Nenurodžius šio formato, DI gali pateikti paprastą tekstą, kurio Moodle neatpažins.
             </div>
             </div>
           <div class="panel-media">
@@ -410,7 +418,7 @@
             </details>
             <div class="step-done">
               <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Atlikta – galima tęsti
+              Atlikta. Galima tęsti
             </div>
             </div>
           </div>
@@ -422,7 +430,7 @@
           <div class="panel-text">
             <span class="step-tag">ChatGPT → kompiuteris</span>
             <h3>XML failo išsaugojimas</h3>
-            <p class="step-intro">Gautą XML kodą išsaugokite kaip failą – jį vėliau įkelsite į Moodle.</p>
+            <p class="step-intro">Gautą XML kodą išsaugokite kaip failą. Jį vėliau įkelsite į Moodle.</p>
             <div class="step-do">
               <p>Atlikite:</p>
               <ol>
@@ -431,7 +439,7 @@
                 <li>Failo pavadinimo lauke įrašykite aiškų pavadinimą, pvz. <code>testas.xml</code>, ir spauskite „Įrašyti“.</li>
               </ol>
             </div>
-            <p class="step-see"><b>Ką turite pamatyti?</b> Failų naršyklės langas, kuriame lauke „Failo vardas“ įrašyta <code>testas.xml</code>, o apačioje matomas XML kodo turinys.</p>
+            <p class="step-see"><b>Ką turėtumėte matyti?</b> Atsidaro failų išsaugojimo langas. Lauke „Failo vardas“ įrašyta <code>testas.xml</code>, o apačioje matomas XML kodo turinys.</p>
             <div class="callout mistake">
               <b>Dažna klaida</b>
               Patikrinkite, kad failas išsaugotas su <code>.xml</code> plėtiniu, pvz. <code>testas.xml</code>.
@@ -451,7 +459,7 @@
             </details>
             <div class="step-done">
               <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Atlikta – galima tęsti
+              Atlikta. Galima tęsti
             </div>
             </div>
           </div>
@@ -472,7 +480,7 @@
                 <li>Lauke „Pavadinimas“ įrašykite testo pavadinimą ir išsaugokite.</li>
               </ol>
             </div>
-            <p class="step-see"><b>Ką turite pamatyti?</b> Testo nustatymų formą su skiltimis „Laikas“, „Įvertinimas“, „Maketas“, „Klausimo veikimas“ ir kt.</p>
+            <p class="step-see"><b>Ką turėtumėte matyti?</b> Atsidaro testo nustatymų forma su skiltimis „Laikas“, „Įvertinimas“, „Maketas“, „Klausimo veikimas“ ir kitomis.</p>
             </div>
           <div class="panel-media">
             <div class="shot" data-full="images/03-naujas-testas.jpg">
@@ -490,7 +498,7 @@
             </details>
             <div class="step-done">
               <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Atlikta – galima tęsti
+              Atlikta. Galima tęsti
             </div>
             </div>
           </div>
@@ -511,7 +519,7 @@
                 <li>Viršuje spauskite skirtuką „Klausimų bankas“.</li>
               </ol>
             </div>
-            <p class="step-see"><b>Ką turite pamatyti?</b> Testo puslapį su mygtuku „Įtraukti klausimą“, eilute „Reikia atlikti: Gauti įvertinimą“ ir geltonu pranešimu apie neįtrauktus klausimus.</p>
+            <p class="step-see"><b>Ką turėtumėte matyti?</b> Atsidaro testo puslapis su mygtuku „Įtraukti klausimą“, eilute „Reikia atlikti: gauti įvertinimą“ ir geltonu pranešimu apie neįtrauktus klausimus.</p>
             </div>
           <div class="panel-media">
             <div class="shot" data-full="images/04-testo-puslapis.jpg">
@@ -529,7 +537,7 @@
             </details>
             <div class="step-done">
               <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Atlikta – galima tęsti
+              Atlikta. Galima tęsti
             </div>
             </div>
           </div>
@@ -545,12 +553,12 @@
             <div class="step-do">
               <p>Atlikite:</p>
               <ol>
-                <li>Klausimų banko puslapyje raskite išskleidžiamą meniu (numatytoji reikšmė — „Klausimai“).</li>
+                <li>Klausimų banko puslapyje raskite išskleidžiamą meniu (numatytoji reikšmė: „Klausimai“).</li>
                 <li>Spustelėkite jį.</li>
                 <li>Pasirinkite „Importuoti“.</li>
               </ol>
             </div>
-            <p class="step-see"><b>Ką turite pamatyti?</b> Išskleistą meniu su punktais „Klausimai“, „Eksportuoti“, „Importuoti“ ir „Kategorijos“.</p>
+            <p class="step-see"><b>Ką turėtumėte matyti?</b> Atsiveria meniu su punktais „Klausimai“, „Eksportuoti“, „Importuoti“ ir „Kategorijos“.</p>
             </div>
           <div class="panel-media">
             <div class="shot" data-full="images/05-importuoti-meniu.jpg">
@@ -566,7 +574,7 @@
             </details>
             <div class="step-done">
               <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Atlikta – galima tęsti
+              Atlikta. Galima tęsti
             </div>
             </div>
           </div>
@@ -589,7 +597,7 @@
                 <li>Patvirtinkite importą.</li>
               </ol>
             </div>
-            <p class="step-see"><b>Ką turite pamatyti?</b> Nuotraukoje — importo rezultatas: pranešimai apie atpažintus klausimus ir jų sąrašas. (Atskiro kadro kiekvienam paspaudimui neturime — patys veiksmai aprašyti aukščiau.)</p>
+            <p class="step-see"><b>Ką turėtumėte matyti?</b> Moodle parodo pranešimus apie atpažintus klausimus ir jų sąrašą. Atskiro kadro kiekvienam paspaudimui neturime, todėl visi veiksmai aprašyti aukščiau.</p>
             <div class="checkpoint">
               <h4>✓ Pasitikrinkite prieš tęsdami</h4>
               <ul>
@@ -597,7 +605,7 @@
                 <li>Ar importuotų klausimų skaičius sutampa su tuo, kiek prašėte ChatGPT sugeneruoti?</li>
                 <li>Ar klausimų tekstai atrodo teisingi ir suprantami?</li>
               </ul>
-              <p class="go">Jeigu visi atsakymai „Taip“ — tęskite prie 7 žingsnio.</p>
+              <p class="go">Jeigu į visus klausimus atsakėte „taip“, tęskite prie 7 žingsnio.</p>
             </div>
             </div>
           <div class="panel-media">
@@ -614,7 +622,7 @@
             </details>
             <div class="step-done">
               <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Atlikta – galima tęsti
+              Atlikta. Galima tęsti
             </div>
             </div>
           </div>
@@ -635,7 +643,7 @@
                 <li>Įsitikinkite, kad prie kiekvieno matoma būsena „Paruoštas“.</li>
               </ol>
             </div>
-            <p class="step-see"><b>Ką turite pamatyti?</b> Lentelę su visais importuotais klausimais, kiekvienam nurodyta būsena „Paruoštas“, versija „v1“ ir jūsų vardas kaip autorius.</p>
+            <p class="step-see"><b>Ką turėtumėte matyti?</b> Klausimų banko lentelėje matote visus importuotus klausimus. Kiekvienam nurodyta būsena „Paruoštas“, versija „v1“ ir jūsų vardas kaip autorius.</p>
             </div>
           <div class="panel-media">
             <div class="shot" data-full="images/07-klausimu-bankas.jpg">
@@ -651,7 +659,7 @@
             </details>
             <div class="step-done">
               <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Atlikta – galima tęsti
+              Atlikta. Galima tęsti
             </div>
             </div>
           </div>
@@ -672,10 +680,10 @@
                 <li>Spauskite „Įkelti pasirinktus klausimus į testą“.</li>
               </ol>
             </div>
-            <p class="step-see"><b>Ką turite pamatyti?</b> Langą „Įtraukti iš klausimų banko pabaigoje“ su jūsų kategorijos pavadinimu ir klausimų skaičiumi skliausteliuose.</p>
+            <p class="step-see"><b>Ką turėtumėte matyti?</b> Atsidaro langas „Įtraukti iš klausimų banko pabaigoje“ su jūsų kategorijos pavadinimu ir klausimų skaičiumi skliausteliuose.</p>
             <div class="callout help">
               <b>Jeigu nematote šio mygtuko...</b>
-              Įsitikinkite, kad esate testo skirtuke „Klausimai“, o ne „Parametrai“ ar „Rezultatai“ — mygtukas „Įtraukti klausimą“ rodomas tik ten.
+              Įsitikinkite, kad esate testo skirtuke „Klausimai“, o ne „Parametrai“ ar „Rezultatai“. Mygtukas „Įtraukti klausimą“ rodomas tik šiame skirtuke.
             </div>
             </div>
           <div class="panel-media">
@@ -694,7 +702,7 @@
             </details>
             <div class="step-done">
               <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Atlikta – galima tęsti
+              Atlikta. Galima tęsti
             </div>
             </div>
           </div>
@@ -715,7 +723,7 @@
                 <li>Patikrinkite, ar atsakymų variantai rodomi teisingai ir suprantamai.</li>
               </ol>
             </div>
-            <p class="step-see"><b>Ką turite pamatyti?</b> Klausimą su keliais atsakymų variantais, o dešinėje — „Testo naršymas“ tinklelį, kuriame matote visus klausimų numerius.</p>
+            <p class="step-see"><b>Ką turėtumėte matyti?</b> Matote klausimą su keliais atsakymų variantais. Dešinėje pusėje rodomas „Testo naršymas“ tinklelis su visų klausimų numeriais.</p>
             <div class="checkpoint">
               <h4>✓ Pasitikrinkite prieš tęsdami</h4>
               <ul>
@@ -723,7 +731,7 @@
                 <li>Ar atsakymų variantai suprantami, be klaidų?</li>
                 <li>Ar testo pavadinimas aiškus mokiniams?</li>
               </ul>
-              <p class="go">Testas jau visiškai veikiantis. Toliau — nebūtinas, bet rekomenduojamas žingsnis: gražus aprašymas mokiniams.</p>
+              <p class="go">Testas jau visiškai veikia. Kitas žingsnis nebūtinas, tačiau rekomenduojamas: parengti aiškų aprašymą mokiniams.</p>
             </div>
             </div>
           <div class="panel-media">
@@ -740,7 +748,7 @@
             </details>
             <div class="step-done">
               <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Atlikta – galima tęsti
+              Atlikta. Galima tęsti
             </div>
             </div>
           </div>
@@ -761,7 +769,7 @@
                 <li>Nukopijuokite gautą tekstą.</li>
               </ol>
             </div>
-            <p class="step-see"><b>Ką turite pamatyti?</b> Suformatuotą tekstą su aiškiomis antraštėmis (pvz. „Testo tikslas“, „Testo informacija“, „Prieš pradėdami“, „Sėkmės!“).</p>
+            <p class="step-see"><b>Ką turėtumėte matyti?</b> ChatGPT pateikia suformatuotą tekstą su aiškiomis antraštėmis, pavyzdžiui, „Testo tikslas“, „Testo informacija“, „Prieš pradėdami“, „Sėkmės!“.</p>
             </div>
           <div class="panel-media">
             <div class="shot" data-full="images/10-aprasymo-parengimas.jpg">
@@ -777,7 +785,7 @@
             </details>
             <div class="step-done">
               <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Atlikta – galima tęsti
+              Atlikta. Galima tęsti
             </div>
             </div>
           </div>
@@ -798,7 +806,7 @@
                 <li>Įklijuokite nukopijuotą tekstą ir spauskite „Įrašyti“.</li>
               </ol>
             </div>
-            <p class="step-see"><b>Ką turite pamatyti?</b> Atvirą įrankių meniu su punktu „Šaltinio kodas“ virš aprašymo teksto lauko.</p>
+            <p class="step-see"><b>Ką turėtumėte matyti?</b> Virš aprašymo teksto lauko atsidaro įrankių meniu su punktu „Šaltinio kodas“.</p>
             </div>
           <div class="panel-media">
             <div class="shot" data-full="images/11-aprasymo-ikelimas.jpg">
@@ -814,7 +822,7 @@
             </details>
             <div class="step-done">
               <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Atlikta – testas visiškai paruoštas!
+              Atlikta. Testas visiškai paruoštas!
             </div>
             </div>
           </div>
@@ -835,7 +843,7 @@
 
   <section class="finish reveal" id="finish">
     <h2>Viskas atlikta!</h2>
-    <p>Turite pilnai veikiantį Moodle testą: klausimus parengė ir XML formatu eksportavo ChatGPT, o jūs juos importavote į klausimų banką, pridėjote į testą ir patikrinote. Mokiniai jau gali jį spręsti.</p>
+    <p>Turite visiškai veikiantį Moodle testą: klausimus parengė ir XML formatu eksportavo ChatGPT, o jūs juos importavote į klausimų banką, pridėjote į testą ir patikrinote. Mokiniai jau gali jį spręsti.</p>
     <div class="finish-flow">
       <span>ChatGPT</span><span class="arrow">→</span>
       <span>klausimai</span><span class="arrow">→</span>
