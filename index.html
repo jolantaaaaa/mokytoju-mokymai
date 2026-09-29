@@ -27,44 +27,25 @@
     --shadow:0 1px 2px rgba(27,36,48,.04), 0 8px 24px rgba(27,36,48,.06);
   }
   *{box-sizing:border-box;}
-  html{scroll-behavior:smooth; scroll-padding-top:84px;}
+  html{scroll-behavior:smooth;}
   body{
     margin:0; background:var(--bg); color:var(--ink);
     font-family:'Inter',sans-serif; font-size:17px; line-height:1.6;
-    -webkit-font-smoothing:antialiased;
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;
   }
   h1,h2,h3,.disp{ font-family:'Space Grotesk',sans-serif; font-weight:700; letter-spacing:-.01em; color:var(--ink); }
   img{max-width:100%; display:block;}
   .wrap{ max-width:1120px; margin:0 auto; padding:0 28px; }
-  .narrow{ max-width:760px; }
   a{ color:var(--blue); }
+  code{ background:#EEF1F7; padding:1px 6px; border-radius:5px; font-size:.92em; }
 
   /* reveal animation */
   .reveal{ opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease; }
   .reveal.in{ opacity:1; transform:translateY(0); }
   @media (prefers-reduced-motion:reduce){ .reveal{ opacity:1; transform:none; transition:none; } }
 
-  /* ---------- top progress bar ---------- */
-  #topbar{
-    position:sticky; top:0; z-index:60; background:rgba(245,247,251,.92); backdrop-filter:blur(8px);
-    border-bottom:1px solid var(--line);
-  }
-  #progressTrack{ height:3px; background:var(--line); }
-  #progressFill{ height:100%; width:0%; background:linear-gradient(90deg,var(--violet),var(--blue)); transition:width .1s linear; }
-  #navRow{ display:flex; align-items:center; gap:18px; padding:12px 28px; max-width:1120px; margin:0 auto; }
-  #navRow .brand{ font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:15px; white-space:nowrap; }
-  #stepDots{ display:flex; gap:6px; overflow-x:auto; flex:1; scrollbar-width:none; }
-  #stepDots::-webkit-scrollbar{ display:none; }
-  #stepDots button{
-    border:none; background:var(--line); color:var(--ink-soft); width:26px; height:26px; border-radius:50%;
-    font-size:11px; font-weight:700; cursor:pointer; flex:0 0 auto; transition:background .25s ease, color .25s ease, transform .25s ease;
-    font-family:'Inter',sans-serif;
-  }
-  #stepDots button.active{ background:var(--blue); color:#fff; transform:scale(1.12); }
-  #stepDots button.ai.active{ background:var(--violet); }
-
   /* ---------- hero ---------- */
-  header.hero{ padding:64px 0 56px; }
+  header.hero{ padding:56px 0 48px; }
   .hero-grid{ display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:center; }
   .badge{
     display:inline-flex; align-items:center; gap:8px; background:var(--blue-soft); color:var(--blue);
@@ -107,12 +88,12 @@
   .flow .arrow{ color:var(--ink-soft); font-size:16px; }
 
   /* ---------- section headers ---------- */
-  .section-head{ margin:0 0 36px; }
+  .section-head{ margin:0 0 32px; }
   .kicker{ color:var(--violet); font-weight:600; font-size:14px; margin:0 0 8px; }
   .section-head h2{ font-size:30px; margin:0 0 10px; }
   .section-head p{ color:var(--ink-soft); max-width:60ch; margin:0; }
 
-  /* ---------- video block ---------- */
+  /* ---------- video block (intro) ---------- */
   .video-block{ margin-bottom:72px; }
   .video-frame{
     position:relative; width:100%; padding-top:56.25%; border-radius:var(--radius); overflow:hidden;
@@ -120,32 +101,92 @@
   }
   .video-frame iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
 
-  /* ---------- steps ---------- */
-  .steps{ display:flex; flex-direction:column; gap:28px; margin-bottom:64px; }
-  .step-card{
-    background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
-    padding:34px 34px 30px; box-shadow:var(--shadow); scroll-margin-top:90px;
+  /* ======================================================
+     INTERACTIVE LEARNING MODE — one step, one screen
+     ====================================================== */
+  .learn-section{ background:#EEF1F8; padding:56px 0 72px; }
+  .learn-wrap{ width:95vw; max-width:1700px; margin:0 auto; padding:0 24px; }
+
+  .learn-top{
+    display:flex; align-items:center; gap:22px; margin-bottom:30px; flex-wrap:wrap;
   }
-  .step-head{ display:flex; align-items:flex-start; gap:18px; margin-bottom:6px; }
-  .step-num{
-    font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:15px; color:#fff;
-    width:40px; height:40px; border-radius:12px; display:flex; align-items:center; justify-content:center; flex:0 0 auto;
+  .learn-count{ font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:16px; white-space:nowrap; }
+  .learn-progress-track{ flex:1; min-width:120px; height:6px; background:var(--line); border-radius:100px; overflow:hidden; }
+  .learn-progress-fill{ height:100%; width:9.09%; background:linear-gradient(90deg,var(--violet),var(--blue)); transition:width .45s ease; border-radius:100px; }
+  .learn-dots{ display:flex; gap:6px; flex-wrap:wrap; }
+  .learn-dots button{
+    border:none; background:var(--line); color:var(--ink-soft); width:30px; height:30px; border-radius:9px;
+    font-size:12px; font-weight:700; cursor:pointer; transition:background .25s ease, color .25s ease, transform .2s ease;
+    font-family:'Inter',sans-serif;
   }
-  .step-card.mo .step-num{ background:var(--blue); }
-  .step-card.ai .step-num{ background:var(--violet); }
-  .step-tag{ font-size:12.5px; font-weight:600; letter-spacing:.02em; margin-bottom:4px; display:block; }
-  .step-card.mo .step-tag{ color:var(--blue); }
-  .step-card.ai .step-tag{ color:var(--violet); }
-  .step-card h3{ font-size:22px; margin:0; }
-  .step-intro{ color:var(--ink-soft); margin:14px 0 18px; max-width:70ch; }
-  .step-do{ background:#FAFBFD; border-left:3px solid var(--line); border-radius:10px; padding:16px 20px; margin-bottom:20px; }
-  .step-do p{ font-weight:600; font-size:13.5px; margin:0 0 8px; color:var(--ink-soft); text-transform:none; }
+  .learn-dots button:hover{ transform:translateY(-2px); }
+  .learn-dots button.active.mo{ background:var(--blue); color:#fff; }
+  .learn-dots button.active.ai{ background:var(--violet); color:#fff; }
+
+  .panel-viewport{
+    background:var(--card); border-radius:24px; box-shadow:var(--shadow); border:1px solid var(--line);
+    padding:44px 48px; min-height:560px; position:relative; overflow:hidden;
+  }
+  .step-panel{ display:none; }
+  .step-panel.active{ display:block; }
+  .step-panel.anim-out{ animation:panelOut .18s ease forwards; }
+  .step-panel.anim-in{ animation:panelIn .38s ease forwards; }
+  @keyframes panelOut{ from{opacity:1; transform:translateY(0);} to{opacity:0; transform:translateY(-12px);} }
+  @keyframes panelIn{ from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);} }
+  @media (prefers-reduced-motion:reduce){ .step-panel.anim-out,.step-panel.anim-in{ animation:none; } }
+
+  .panel-grid{ display:grid; grid-template-columns:35% 65%; gap:48px; align-items:start; }
+
+  .step-tag{ font-size:12.5px; font-weight:700; letter-spacing:.03em; margin-bottom:8px; display:inline-block;
+    padding:5px 12px; border-radius:100px; text-transform:uppercase; }
+  .step-panel.ai .step-tag{ color:var(--violet); background:var(--violet-soft); }
+  .step-panel.mo .step-tag{ color:var(--blue); background:var(--blue-soft); }
+  .panel-text h3{ font-size:26px; margin:6px 0 14px; line-height:1.2; }
+  .step-intro{ color:var(--ink-soft); margin:0 0 18px; font-size:16.5px; }
+
+  .step-do{ background:#FAFBFD; border-left:3px solid var(--line); border-radius:10px; padding:16px 20px; margin-bottom:18px; }
+  .step-do p{ font-weight:600; font-size:13.5px; margin:0 0 8px; color:var(--ink-soft); }
   .step-do ol{ margin:0; padding-left:20px; }
   .step-do li{ margin-bottom:5px; }
-  .shot{ border-radius:14px; overflow:hidden; border:2px solid var(--line); cursor:zoom-in; margin-bottom:18px; position:relative; box-shadow:0 4px 14px rgba(27,36,48,.07); }
+
+  .step-see{ font-size:15px; margin-bottom:14px; }
+  .step-see b{ color:var(--ink); }
+
+  .callout{ border-radius:14px; padding:16px 20px; margin:0 0 16px; font-size:14.5px; }
+  .callout b{ display:block; margin-bottom:4px; font-family:'Space Grotesk',sans-serif; font-size:13.5px; }
+  .callout.important{ background:var(--blue-soft); color:#1E2E7A; }
+  .callout.important b{ color:var(--blue); }
+  .callout.mistake{ background:var(--amber-soft); color:#6B4408; }
+  .callout.mistake b{ color:var(--amber); }
+  .callout.help{ background:#F2F2F5; color:var(--ink-soft); }
+  .callout.help b{ color:var(--ink); }
+
+  .checkpoint{ background:var(--teal-soft); border-radius:14px; padding:18px 20px; margin:0 0 16px; }
+  .checkpoint h4{ font-family:'Space Grotesk',sans-serif; color:#0E7A63; font-size:15px; margin:0 0 10px; }
+  .checkpoint ul{ margin:0; padding-left:20px; font-size:14.5px; }
+  .checkpoint li{ margin-bottom:5px; }
+  .checkpoint .go{ margin-top:10px; font-weight:600; color:#0E7A63; font-size:13.5px; }
+
+  .step-done{ display:flex; align-items:center; gap:8px; color:var(--teal); font-weight:600; font-size:14.5px; margin-top:6px; }
+  .step-done svg{ flex:0 0 auto; }
+
+  /* in-step video toggle */
+  .video-toggle{ margin:4px 0 18px; border:1px solid var(--line); border-radius:12px; padding:2px 16px; background:#FAFBFD; }
+  .video-toggle summary{
+    cursor:pointer; list-style:none; padding:12px 0; font-weight:600; font-size:14.5px; color:var(--ink);
+    display:flex; align-items:center; gap:8px; user-select:none;
+  }
+  .video-toggle summary::-webkit-details-marker{ display:none; }
+  .video-toggle summary::before{ content:"▶"; font-size:10px; color:var(--violet); transition:transform .25s ease; }
+  .video-toggle[open] summary::before{ transform:rotate(90deg); }
+  .video-mount{ margin-bottom:4px; }
+  .full-video-link{ display:inline-block; font-size:13.5px; font-weight:600; margin:0 0 14px; }
+
+  /* media column */
+  .shot{ border-radius:14px; overflow:hidden; border:2px solid var(--line); cursor:zoom-in; position:relative; box-shadow:0 4px 14px rgba(27,36,48,.07); }
   .shot img{ width:100%; display:block; transition:transform .35s ease; }
   .shot:hover{ border-color:var(--blue); }
-  .shot:hover img{ transform:scale(1.012); }
+  .shot:hover img{ transform:scale(1.008); }
   .shot .zoomtag{
     position:absolute; right:14px; bottom:14px; background:rgba(27,36,48,.82); color:#fff; font-size:12.5px;
     padding:7px 13px; border-radius:9px; font-weight:700; letter-spacing:.01em;
@@ -159,32 +200,34 @@
     position:absolute; background:var(--blue); color:#fff; font-size:12px; font-weight:700; padding:4px 9px;
     border-radius:7px; white-space:nowrap; pointer-events:none;
   }
-  .step-see{ font-size:15px; margin-bottom:6px; }
-  .step-see b{ color:var(--ink); }
-  .step-done{ display:flex; align-items:center; gap:8px; color:var(--teal); font-weight:600; font-size:14.5px; margin-top:16px; }
-  .step-done svg{ flex:0 0 auto; }
 
-  .callout{ border-radius:14px; padding:18px 22px; margin:18px 0; font-size:15px; }
-  .callout b{ display:block; margin-bottom:4px; font-family:'Space Grotesk',sans-serif; font-size:14px; }
-  .callout.important{ background:var(--blue-soft); color:#1E2E7A; }
-  .callout.important b{ color:var(--blue); }
-  .callout.mistake{ background:var(--amber-soft); color:#6B4408; }
-  .callout.mistake b{ color:var(--amber); }
-  .callout.help{ background:#F2F2F5; color:var(--ink-soft); }
-  .callout.help b{ color:var(--ink); }
-
-  .checkpoint{
-    background:var(--teal-soft); border-radius:var(--radius); padding:28px 32px; margin:0 0 64px;
+  /* nav */
+  .learn-nav{ display:flex; align-items:center; justify-content:space-between; margin-top:26px; gap:16px; }
+  .nav-btn{
+    display:inline-flex; align-items:center; gap:8px; background:#fff; color:var(--ink); border:1px solid var(--line);
+    padding:13px 22px; border-radius:12px; font-weight:600; font-size:15px; cursor:pointer; font-family:'Inter',sans-serif;
+    transition:transform .2s ease, box-shadow .2s ease, opacity .2s ease;
   }
-  .checkpoint h4{ font-family:'Space Grotesk',sans-serif; color:#0E7A63; font-size:17px; margin:0 0 12px; }
-  .checkpoint ul{ margin:0; padding-left:20px; }
-  .checkpoint li{ margin-bottom:6px; }
-  .checkpoint .go{ margin-top:14px; font-weight:600; color:#0E7A63; font-size:14.5px; }
+  .nav-btn:hover{ transform:translateY(-2px); box-shadow:0 8px 20px rgba(27,36,48,.1); }
+  .nav-btn.primary{ background:var(--ink); color:#fff; border-color:var(--ink); }
+  .nav-btn:disabled{ opacity:.35; cursor:not-allowed; transform:none; box-shadow:none; }
+  .nav-counter{ font-family:'Space Grotesk',sans-serif; font-weight:700; color:var(--ink-soft); font-size:15px; }
+
+  @media (max-width:960px){
+    .panel-grid{ grid-template-columns:1fr; gap:24px; }
+    .panel-viewport{ padding:28px 22px; min-height:0; }
+  }
+  @media (max-width:860px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .hero-img-wrap{ order:-1; }
+    h1{ font-size:32px; }
+    .learn-top{ gap:14px; }
+    .learn-count{ font-size:14px; }
+    .learn-dots{ order:3; width:100%; overflow-x:auto; flex-wrap:nowrap; padding-bottom:4px; }
+  }
 
   /* ---------- ending ---------- */
-  .finish{
-    background:var(--ink); color:#fff; border-radius:24px; padding:56px 48px; margin-bottom:56px;
-  }
+  .finish{ background:var(--ink); color:#fff; border-radius:24px; padding:56px 48px; margin:64px 0 56px; }
   .finish h2{ color:#fff; font-size:30px; margin:0 0 14px; }
   .finish p{ color:#C7CCDA; max-width:60ch; margin:0 0 28px; }
   .finish-flow{ display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:34px; }
@@ -202,37 +245,22 @@
   footer .org{ margin-bottom:14px; }
   footer .copy{ font-size:12.5px; color:#9AA2AF; }
 
+  @media (max-width:860px){ .finish{ padding:36px 24px; } }
+
   /* ---------- lightbox ---------- */
   #lightbox{
     position:fixed; inset:0; background:rgba(15,18,24,.92); display:none; align-items:center; justify-content:center;
     z-index:100; padding:40px; cursor:zoom-out;
   }
   #lightbox.open{ display:flex; }
-  #lightbox img{ max-width:min(1100px,92vw); max-height:88vh; border-radius:12px; box-shadow:0 20px 60px rgba(0,0,0,.5); }
+  #lightbox img{ max-width:min(1300px,94vw); max-height:90vh; border-radius:12px; box-shadow:0 20px 60px rgba(0,0,0,.5); }
   #lightbox .lbclose{
     position:absolute; top:24px; right:32px; color:#fff; font-size:16px; font-weight:600; background:rgba(255,255,255,.12);
     border:none; padding:10px 16px; border-radius:10px; cursor:pointer;
   }
-
-  @media (max-width:860px){
-    .hero-grid{ grid-template-columns:1fr; }
-    .hero-img-wrap{ order:-1; }
-    h1{ font-size:32px; }
-    .step-card{ padding:24px 20px; }
-    #navRow .brand{ display:none; }
-    .finish{ padding:36px 24px; }
-  }
 </style>
 </head>
 <body>
-
-<div id="topbar">
-  <div id="progressTrack"><div id="progressFill"></div></div>
-  <div id="navRow">
-    <span class="brand">XML → Moodle</span>
-    <div id="stepDots"></div>
-  </div>
-</div>
 
 <div class="wrap">
 
@@ -247,7 +275,7 @@
           <div><strong>11</strong>aiškių žingsnių</div>
           <div><strong>2</strong>aplinkos: ChatGPT ir Moodle</div>
         </div>
-        <a href="#instrukcija" class="btn">Pradėti mokymą ↓</a>
+        <a href="#learnMode" class="btn" id="startBtn">Pradėti mokymą ↓</a>
       </div>
       <div class="hero-img-wrap reveal">
         <img src="images/hero.jpg" alt="Moodle testo aplinka nešiojamo kompiuterio ekrane">
@@ -273,361 +301,470 @@
     <div class="section-head">
       <p class="kicker">Geriau matyti gyvai?</p>
       <h2>Peržiūrėkite vaizdo pamoką</h2>
-      <p>Tai mano parengta vaizdo pamoka, kurioje visas procesas parodomas praktiškai. Žemiau pateikta instrukcija leidžia tuos pačius veiksmus pakartoti savo Moodle aplinkoje.</p>
+      <p>Tai mano parengta vaizdo pamoka, kurioje visas procesas parodomas praktiškai. Žemiau pateiktame mokymo režime tuos pačius veiksmus atliksite patys, žingsnis po žingsnio.</p>
     </div>
     <div class="video-frame">
       <iframe src="https://www.youtube.com/embed/wtPYJjsMOTM" title="Klausimų importas iš XML į Moodle" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
     </div>
   </section>
 
-  <section id="instrukcija">
-    <div class="section-head reveal">
-      <p class="kicker">Instrukcija žingsnis po žingsnio</p>
-      <h2>Nuo idėjos iki paruošto testo</h2>
-      <p>Kiekvienas žingsnis — atskira kortelė su realiu ekrano vaizdu iš Moodle ar ChatGPT. Atlikite juos iš eilės, nuo pirmo iki paskutinio.</p>
+  <div class="section-head reveal">
+    <p class="kicker">Instrukcija žingsnis po žingsnio</p>
+    <h2>Nuo idėjos iki paruošto testo</h2>
+    <p>Interaktyvus mokymo režimas — vienu metu matysite tik vieną žingsnį. Naudokitės mygtukais apačioje arba žingsnių taškeliais viršuje.</p>
+  </div>
+
+</div>
+
+<!-- ======================= INTERACTIVE LEARNING MODE ======================= -->
+<section class="learn-section" id="learnMode">
+  <div class="learn-wrap">
+
+    <div class="learn-top">
+      <div class="learn-count">Žingsnis <span id="curStepTop">1</span> iš 11</div>
+      <div class="learn-progress-track"><div class="learn-progress-fill" id="learnFill"></div></div>
+      <div class="learn-dots" id="learnDots"></div>
     </div>
 
-    <div class="steps">
+    <div class="panel-viewport">
 
       <!-- STEP 1 -->
-      <article class="step-card ai reveal" id="step-1" data-dot="1" data-kind="ai">
-        <div class="step-head">
-          <div class="step-num">01</div>
-          <div><span class="step-tag">ChatGPT</span><h3>Testo klausimų parengimas</h3></div>
-        </div>
-        <p class="step-intro">Klausimus sukuria dirbtinis intelektas. Jums tereikia aiškiai juos apibūdinti.</p>
-        <div class="step-do">
-          <p>Atlikite:</p>
-          <ol>
-            <li>Atsidarykite ChatGPT (arba kitą DI pokalbių įrankį).</li>
-            <li>Aprašykite temą, klausimų skaičių ir formatą, pvz.: „sukurk Moodle testą, kurį kelsiu mokiniams su keliais galimais variantais kuriuos prisegu“.</li>
-            <li>Kai klausimai paruošti, paprašykite: „gerai, pateik XML kodą“.</li>
-          </ol>
-        </div>
-        <div class="shot" data-full="images/01-chatgpt-klausimai.jpg">
-          <img src="images/01-chatgpt-klausimai.jpg" alt="ChatGPT pokalbis, kuriame aprašomi 20 klausimų testo reikalavimai ir prašoma XML kodo" loading="lazy">
-          <span class="zoomtag">🔍 Padidinti</span>
-        </div>
-        <p class="step-see"><b>Ką turite pamatyti?</b> ChatGPT patvirtina, kokio testo sukūrė (klausimų skaičius, maišomi atsakymai, paaiškinimai po kiekvieno klausimo) ir yra pasiruošęs pateikti Moodle XML kodą.</p>
-        <div class="callout important">
-          <b>Svarbu</b>
-          Konkrečiai paprašykite formato „Moodle XML“ — priešingu atveju DI gali pateikti paprastą tekstą, kurio Moodle neatpažins.
-        </div>
-        <div class="step-done">
-          <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Atlikta – galima tęsti
+      <article class="step-panel ai active" data-index="1" data-kind="ai">
+        <div class="panel-grid">
+          <div class="panel-text">
+            <span class="step-tag">ChatGPT</span>
+            <h3>Testo klausimų parengimas</h3>
+            <p class="step-intro">Klausimus sukuria dirbtinis intelektas. Jums tereikia aiškiai juos apibūdinti.</p>
+            <div class="step-do">
+              <p>Atlikite:</p>
+              <ol>
+                <li>Atsidarykite ChatGPT (arba kitą DI pokalbių įrankį).</li>
+                <li>Aprašykite temą, klausimų skaičių ir formatą, pvz.: „sukurk Moodle testą, kurį kelsiu mokiniams su keliais galimais variantais kuriuos prisegu“.</li>
+                <li>Kai klausimai paruošti, paprašykite: „gerai, pateik XML kodą“.</li>
+              </ol>
+            </div>
+            <p class="step-see"><b>Ką turite pamatyti?</b> ChatGPT patvirtina, kokio testo sukūrė (klausimų skaičius, maišomi atsakymai, paaiškinimai po kiekvieno klausimo) ir yra pasiruošęs pateikti Moodle XML kodą.</p>
+            <div class="callout important">
+              <b>Svarbu</b>
+              Konkrečiai paprašykite formato „Moodle XML“ — priešingu atveju DI gali pateikti paprastą tekstą, kurio Moodle neatpažins.
+            </div>
+            <details class="video-toggle">
+              <summary>Pažiūrėti, kaip tai atliekama vaizdo pamokoje</summary>
+              <div class="video-mount" data-start="360"></div>
+              <a class="full-video-link" href="https://youtu.be/wtPYJjsMOTM" target="_blank" rel="noopener">Žiūrėti visą vaizdo pamoką ↗</a>
+            </details>
+            <div class="step-done">
+              <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Atlikta – galima tęsti
+            </div>
+          </div>
+          <div class="panel-media">
+            <div class="shot" data-full="images/01-chatgpt-klausimai.jpg">
+              <img src="images/01-chatgpt-klausimai.jpg" alt="ChatGPT pokalbis, kuriame aprašomi 20 klausimų testo reikalavimai ir prašoma XML kodo" loading="lazy">
+              <span class="zoomtag">🔍 Padidinti</span>
+            </div>
+          </div>
         </div>
       </article>
 
       <!-- STEP 2 -->
-      <article class="step-card ai reveal" id="step-2" data-dot="2" data-kind="ai">
-        <div class="step-head">
-          <div class="step-num">02</div>
-          <div><span class="step-tag">ChatGPT → kompiuteris</span><h3>XML failo išsaugojimas</h3></div>
-        </div>
-        <p class="step-intro">Gautą XML kodą išsaugokite kaip failą – jį vėliau įkelsite į Moodle.</p>
-        <div class="step-do">
-          <p>Atlikite:</p>
-          <ol>
-            <li>Pasirinkite visą ChatGPT pateiktą XML kodą.</li>
-            <li>Pasirinkite „Įrašyti kaip“ (arba nukopijuokite į teksto redaktorių).</li>
-            <li>Failo pavadinimo lauke įrašykite aiškų pavadinimą, pvz. <code>testas.xml</code>, ir spauskite „Įrašyti“.</li>
-          </ol>
-        </div>
-        <div class="shot" data-full="images/02-xml-issaugojimas.jpg">
-          <img src="images/02-xml-issaugojimas.jpg" alt="Failo išsaugojimo langas su pavadinimu testas.xml ir matomu XML turiniu" loading="lazy">
-          <span class="zoomtag">🔍 Padidinti</span>
-        </div>
-        <p class="step-see"><b>Ką turite pamatyti?</b> Failų naršyklės langas, kuriame lauke „Failo vardas“ įrašyta <code>testas.xml</code>, o apačioje matomas XML kodo turinys.</p>
-        <div class="callout mistake">
-          <b>Dažna klaida</b>
-          Patikrinkite, kad failas išsaugotas su <code>.xml</code> plėtiniu, pvz. <code>testas.xml</code>.
-        </div>
-        <div class="step-done">
-          <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Atlikta – galima tęsti
+      <article class="step-panel ai" data-index="2" data-kind="ai">
+        <div class="panel-grid">
+          <div class="panel-text">
+            <span class="step-tag">ChatGPT → kompiuteris</span>
+            <h3>XML failo išsaugojimas</h3>
+            <p class="step-intro">Gautą XML kodą išsaugokite kaip failą – jį vėliau įkelsite į Moodle.</p>
+            <div class="step-do">
+              <p>Atlikite:</p>
+              <ol>
+                <li>Pasirinkite visą ChatGPT pateiktą XML kodą.</li>
+                <li>Pasirinkite „Įrašyti kaip“ (arba nukopijuokite į teksto redaktorių).</li>
+                <li>Failo pavadinimo lauke įrašykite aiškų pavadinimą, pvz. <code>testas.xml</code>, ir spauskite „Įrašyti“.</li>
+              </ol>
+            </div>
+            <p class="step-see"><b>Ką turite pamatyti?</b> Failų naršyklės langas, kuriame lauke „Failo vardas“ įrašyta <code>testas.xml</code>, o apačioje matomas XML kodo turinys.</p>
+            <div class="callout mistake">
+              <b>Dažna klaida</b>
+              Patikrinkite, kad failas išsaugotas su <code>.xml</code> plėtiniu, pvz. <code>testas.xml</code>.
+            </div>
+            <details class="video-toggle">
+              <summary>Pažiūrėti, kaip tai atliekama vaizdo pamokoje</summary>
+              <div class="video-mount" data-start="450"></div>
+              <a class="full-video-link" href="https://youtu.be/wtPYJjsMOTM" target="_blank" rel="noopener">Žiūrėti visą vaizdo pamoką ↗</a>
+            </details>
+            <div class="step-done">
+              <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Atlikta – galima tęsti
+            </div>
+          </div>
+          <div class="panel-media">
+            <div class="shot" data-full="images/02-xml-issaugojimas.jpg">
+              <img src="images/02-xml-issaugojimas.jpg" alt="Failo išsaugojimo langas su pavadinimu testas.xml ir matomu XML turiniu" loading="lazy">
+              <span class="zoomtag">🔍 Padidinti</span>
+            </div>
+          </div>
         </div>
       </article>
 
       <!-- STEP 3 -->
-      <article class="step-card mo reveal" id="step-3" data-dot="3" data-kind="mo">
-        <div class="step-head">
-          <div class="step-num">03</div>
-          <div><span class="step-tag">Moodle</span><h3>Naujos „Testas“ veiklos sukūrimas</h3></div>
-        </div>
-        <p class="step-intro">Moodle sukuriame tuščią testą, į kurį vėliau įkelsime klausimus.</p>
-        <div class="step-do">
-          <p>Atlikite:</p>
-          <ol>
-            <li>Savo Moodle kurse įjunkite redagavimo režimą.</li>
-            <li>Norimoje temoje spauskite „Pridėti veiklą ar išteklių“ ir pasirinkite „Testas“.</li>
-            <li>Lauke „Pavadinimas“ įrašykite testo pavadinimą ir išsaugokite.</li>
-          </ol>
-        </div>
-        <div class="shot" data-full="images/03-naujas-testas.jpg">
-          <img src="images/03-naujas-testas.jpg" alt="Naujo Moodle testo nustatymų forma su lauku Pavadinimas" loading="lazy">
-          <span class="pin" style="left:37.7%; top:38.3%; width:22.5%; height:2.8%"></span>
-          <span class="pin-label" style="left:37.7%; top:44%">Įrašykite čia</span>
-          <span class="zoomtag">🔍 Padidinti</span>
-        </div>
-        <p class="step-see"><b>Ką turite pamatyti?</b> Testo nustatymų formą su skiltimis „Laikas“, „Įvertinimas“, „Maketas“, „Klausimo veikimas“ ir kt.</p>
-        <div class="step-done">
-          <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Atlikta – galima tęsti
+      <article class="step-panel mo" data-index="3" data-kind="mo">
+        <div class="panel-grid">
+          <div class="panel-text">
+            <span class="step-tag">Moodle</span>
+            <h3>Naujos „Testas“ veiklos sukūrimas</h3>
+            <p class="step-intro">Moodle sukuriame tuščią testą, į kurį vėliau įkelsime klausimus.</p>
+            <div class="step-do">
+              <p>Atlikite:</p>
+              <ol>
+                <li>Savo Moodle kurse įjunkite redagavimo režimą.</li>
+                <li>Norimoje temoje spauskite „Pridėti veiklą ar išteklių“ ir pasirinkite „Testas“.</li>
+                <li>Lauke „Pavadinimas“ įrašykite testo pavadinimą ir išsaugokite.</li>
+              </ol>
+            </div>
+            <p class="step-see"><b>Ką turite pamatyti?</b> Testo nustatymų formą su skiltimis „Laikas“, „Įvertinimas“, „Maketas“, „Klausimo veikimas“ ir kt.</p>
+            <details class="video-toggle">
+              <summary>Pažiūrėti, kaip tai atliekama vaizdo pamokoje</summary>
+              <div class="video-mount" data-start="180"></div>
+              <a class="full-video-link" href="https://youtu.be/wtPYJjsMOTM" target="_blank" rel="noopener">Žiūrėti visą vaizdo pamoką ↗</a>
+            </details>
+            <div class="step-done">
+              <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Atlikta – galima tęsti
+            </div>
+          </div>
+          <div class="panel-media">
+            <div class="shot" data-full="images/03-naujas-testas.jpg">
+              <img src="images/03-naujas-testas.jpg" alt="Naujo Moodle testo nustatymų forma su lauku Pavadinimas" loading="lazy">
+              <span class="pin" style="left:37.7%; top:38.3%; width:22.5%; height:2.8%"></span>
+              <span class="pin-label" style="left:37.7%; top:44%">Įrašykite čia</span>
+              <span class="zoomtag">🔍 Padidinti</span>
+            </div>
+          </div>
         </div>
       </article>
 
       <!-- STEP 4 -->
-      <article class="step-card mo reveal" id="step-4" data-dot="4" data-kind="mo">
-        <div class="step-head">
-          <div class="step-num">04</div>
-          <div><span class="step-tag">Moodle</span><h3>Testo puslapis ir klausimų bankas</h3></div>
-        </div>
-        <p class="step-intro">Testas kol kas tuščias. Klausimus rasime klausimų banke.</p>
-        <div class="step-do">
-          <p>Atlikite:</p>
-          <ol>
-            <li>Išsaugoję nustatymus, atsidursite testo puslapyje.</li>
-            <li>Pastebėsite pranešimą „Klausimai dar neįtraukti“.</li>
-            <li>Viršuje spauskite skirtuką „Klausimų bankas“.</li>
-          </ol>
-        </div>
-        <div class="shot" data-full="images/04-testo-puslapis.jpg">
-          <img src="images/04-testo-puslapis.jpg" alt="Tuščias Moodle testo puslapis su mygtuku Įtraukti klausimą ir pranešimu Klausimai dar neįtraukti" loading="lazy">
-          <span class="pin" style="left:24.3%; top:40.7%; width:5.9%; height:1.9%"></span>
-          <span class="pin-label" style="left:24.3%; top:33%">Spauskite čia</span>
-          <span class="zoomtag">🔍 Padidinti</span>
-        </div>
-        <p class="step-see"><b>Ką turite pamatyti?</b> Testo puslapį su mygtuku „Įtraukti klausimą“, eilute „Reikia atlikti: Gauti įvertinimą“ ir geltonu pranešimu apie neįtrauktus klausimus.</p>
-        <div class="step-done">
-          <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Atlikta – galima tęsti
+      <article class="step-panel mo" data-index="4" data-kind="mo">
+        <div class="panel-grid">
+          <div class="panel-text">
+            <span class="step-tag">Moodle</span>
+            <h3>Testo puslapis ir klausimų bankas</h3>
+            <p class="step-intro">Testas kol kas tuščias. Klausimus rasime klausimų banke.</p>
+            <div class="step-do">
+              <p>Atlikite:</p>
+              <ol>
+                <li>Išsaugoję nustatymus, atsidursite testo puslapyje.</li>
+                <li>Pastebėsite pranešimą „Klausimai dar neįtraukti“.</li>
+                <li>Viršuje spauskite skirtuką „Klausimų bankas“.</li>
+              </ol>
+            </div>
+            <p class="step-see"><b>Ką turite pamatyti?</b> Testo puslapį su mygtuku „Įtraukti klausimą“, eilute „Reikia atlikti: Gauti įvertinimą“ ir geltonu pranešimu apie neįtrauktus klausimus.</p>
+            <details class="video-toggle">
+              <summary>Pažiūrėti, kaip tai atliekama vaizdo pamokoje</summary>
+              <div class="video-mount" data-start="540"></div>
+              <a class="full-video-link" href="https://youtu.be/wtPYJjsMOTM" target="_blank" rel="noopener">Žiūrėti visą vaizdo pamoką ↗</a>
+            </details>
+            <div class="step-done">
+              <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Atlikta – galima tęsti
+            </div>
+          </div>
+          <div class="panel-media">
+            <div class="shot" data-full="images/04-testo-puslapis.jpg">
+              <img src="images/04-testo-puslapis.jpg" alt="Tuščias Moodle testo puslapis su mygtuku Įtraukti klausimą ir pranešimu Klausimai dar neįtraukti" loading="lazy">
+              <span class="pin" style="left:24.3%; top:40.7%; width:5.9%; height:1.9%"></span>
+              <span class="pin-label" style="left:24.3%; top:33%">Spauskite čia</span>
+              <span class="zoomtag">🔍 Padidinti</span>
+            </div>
+          </div>
         </div>
       </article>
 
       <!-- STEP 5 -->
-      <article class="step-card mo reveal" id="step-5" data-dot="5" data-kind="mo">
-        <div class="step-head">
-          <div class="step-num">05</div>
-          <div><span class="step-tag">Moodle</span><h3>Importo pasirinkimas</h3></div>
-        </div>
-        <p class="step-intro">Klausimų banke yra funkcija klausimams importuoti iš failo.</p>
-        <div class="step-do">
-          <p>Atlikite:</p>
-          <ol>
-            <li>Klausimų banko puslapyje raskite išskleidžiamą meniu (numatytoji reikšmė — „Klausimai“).</li>
-            <li>Spustelėkite jį.</li>
-            <li>Pasirinkite „Importuoti“.</li>
-          </ol>
-        </div>
-        <div class="shot" data-full="images/05-importuoti-meniu.jpg">
-          <img src="images/05-importuoti-meniu.jpg" alt="Klausimų banko išskleidžiamas meniu su pasirinkimu Importuoti" loading="lazy">
-          <span class="zoomtag">🔍 Padidinti</span>
-        </div>
-        <p class="step-see"><b>Ką turite pamatyti?</b> Išskleistą meniu su punktais „Klausimai“, „Eksportuoti“, „Importuoti“ ir „Kategorijos“.</p>
-        <div class="step-done">
-          <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Atlikta – galima tęsti
+      <article class="step-panel mo" data-index="5" data-kind="mo">
+        <div class="panel-grid">
+          <div class="panel-text">
+            <span class="step-tag">Moodle</span>
+            <h3>Importo pasirinkimas</h3>
+            <p class="step-intro">Klausimų banke yra funkcija klausimams importuoti iš failo.</p>
+            <div class="step-do">
+              <p>Atlikite:</p>
+              <ol>
+                <li>Klausimų banko puslapyje raskite išskleidžiamą meniu (numatytoji reikšmė — „Klausimai“).</li>
+                <li>Spustelėkite jį.</li>
+                <li>Pasirinkite „Importuoti“.</li>
+              </ol>
+            </div>
+            <p class="step-see"><b>Ką turite pamatyti?</b> Išskleistą meniu su punktais „Klausimai“, „Eksportuoti“, „Importuoti“ ir „Kategorijos“.</p>
+            <details class="video-toggle">
+              <summary>Pažiūrėti, kaip tai atliekama vaizdo pamokoje</summary>
+              <div class="video-mount" data-start="480"></div>
+              <a class="full-video-link" href="https://youtu.be/wtPYJjsMOTM" target="_blank" rel="noopener">Žiūrėti visą vaizdo pamoką ↗</a>
+            </details>
+            <div class="step-done">
+              <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Atlikta – galima tęsti
+            </div>
+          </div>
+          <div class="panel-media">
+            <div class="shot" data-full="images/05-importuoti-meniu.jpg">
+              <img src="images/05-importuoti-meniu.jpg" alt="Klausimų banko išskleidžiamas meniu su pasirinkimu Importuoti" loading="lazy">
+              <span class="zoomtag">🔍 Padidinti</span>
+            </div>
+          </div>
         </div>
       </article>
 
       <!-- STEP 6 -->
-      <article class="step-card mo reveal" id="step-6" data-dot="6" data-kind="mo">
-        <div class="step-head">
-          <div class="step-num">06</div>
-          <div><span class="step-tag">Moodle</span><h3>XML failo importavimas</h3></div>
-        </div>
-        <p class="step-intro">Dabar Moodle nuskaitys jūsų failą ir atpažins jame esančius klausimus.</p>
-        <div class="step-do">
-          <p>Atlikite:</p>
-          <ol>
-            <li>Pasirinkite formatą „Moodle XML formatas“.</li>
-            <li>Pasirinkite / įkelkite kompiuteryje išsaugotą <code>.xml</code> failą.</li>
-            <li>Paspauskite „Importuoti“.</li>
-            <li>Palaukite, kol Moodle parodys atpažintus klausimus.</li>
-            <li>Patvirtinkite importą.</li>
-          </ol>
-        </div>
-        <div class="shot" data-full="images/06-xml-atpazintas.jpg">
-          <img src="images/06-xml-atpazintas.jpg" alt="Moodle pranešimas Importuojami 20 klausimai iš failo ir klausimų sąrašo peržiūra" loading="lazy">
-          <span class="zoomtag">🔍 Padidinti</span>
-        </div>
-        <p class="step-see"><b>Ką turite pamatyti?</b> Nuotraukoje — importo rezultatas: pranešimai apie atpažintus klausimus ir jų sąrašas. (Atskiro kadro kiekvienam paspaudimui neturime — patys veiksmai aprašyti aukščiau.)</p>
-        <div class="step-done">
-          <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Atlikta – galima tęsti
+      <article class="step-panel mo" data-index="6" data-kind="mo">
+        <div class="panel-grid">
+          <div class="panel-text">
+            <span class="step-tag">Moodle</span>
+            <h3>XML failo importavimas</h3>
+            <p class="step-intro">Dabar Moodle nuskaitys jūsų failą ir atpažins jame esančius klausimus.</p>
+            <div class="step-do">
+              <p>Atlikite:</p>
+              <ol>
+                <li>Pasirinkite formatą „Moodle XML formatas“.</li>
+                <li>Pasirinkite / įkelkite kompiuteryje išsaugotą <code>.xml</code> failą.</li>
+                <li>Paspauskite „Importuoti“.</li>
+                <li>Palaukite, kol Moodle parodys atpažintus klausimus.</li>
+                <li>Patvirtinkite importą.</li>
+              </ol>
+            </div>
+            <p class="step-see"><b>Ką turite pamatyti?</b> Nuotraukoje — importo rezultatas: pranešimai apie atpažintus klausimus ir jų sąrašas. (Atskiro kadro kiekvienam paspaudimui neturime — patys veiksmai aprašyti aukščiau.)</p>
+            <div class="checkpoint">
+              <h4>✓ Pasitikrinkite prieš tęsdami</h4>
+              <ul>
+                <li>Ar matote žalią pranešimą, kad klausimai importuoti?</li>
+                <li>Ar importuotų klausimų skaičius sutampa su tuo, kiek prašėte ChatGPT sugeneruoti?</li>
+                <li>Ar klausimų tekstai atrodo teisingi ir suprantami?</li>
+              </ul>
+              <p class="go">Jeigu visi atsakymai „Taip“ — tęskite prie 7 žingsnio.</p>
+            </div>
+            <details class="video-toggle">
+              <summary>Pažiūrėti, kaip tai atliekama vaizdo pamokoje</summary>
+              <div class="video-mount" data-start="500"></div>
+              <a class="full-video-link" href="https://youtu.be/wtPYJjsMOTM" target="_blank" rel="noopener">Žiūrėti visą vaizdo pamoką ↗</a>
+            </details>
+            <div class="step-done">
+              <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Atlikta – galima tęsti
+            </div>
+          </div>
+          <div class="panel-media">
+            <div class="shot" data-full="images/06-xml-atpazintas.jpg">
+              <img src="images/06-xml-atpazintas.jpg" alt="Moodle pranešimas Importuojami 20 klausimai iš failo ir klausimų sąrašo peržiūra" loading="lazy">
+              <span class="zoomtag">🔍 Padidinti</span>
+            </div>
+          </div>
         </div>
       </article>
 
-    </div>
-
-    <div class="checkpoint reveal">
-      <h4>✓ Pasitikrinkite prieš tęsdami</h4>
-      <ul>
-        <li>Ar matote žalią pranešimą, kad klausimai importuoti?</li>
-        <li>Ar importuotų klausimų skaičius sutampa su tuo, kiek prašėte ChatGPT sugeneruoti?</li>
-        <li>Ar klausimų tekstai atrodo teisingi ir suprantami?</li>
-      </ul>
-      <p class="go">Jeigu visi atsakymai „Taip“ — tęskite prie 7 žingsnio.</p>
-    </div>
-
-    <div class="steps">
-
       <!-- STEP 7 -->
-      <article class="step-card mo reveal" id="step-7" data-dot="7" data-kind="mo">
-        <div class="step-head">
-          <div class="step-num">07</div>
-          <div><span class="step-tag">Moodle</span><h3>Importuotų klausimų patikrinimas</h3></div>
-        </div>
-        <p class="step-intro">Prieš naudodami klausimus, patikrinkite, ar jie visi atsirado banke.</p>
-        <div class="step-do">
-          <p>Atlikite:</p>
-          <ol>
-            <li>Importui pasibaigus, peržiūrėkite klausimų banko sąrašą.</li>
-            <li>Peržvelkite kiekvieno klausimo pavadinimą.</li>
-            <li>Įsitikinkite, kad prie kiekvieno matoma būsena „Paruoštas“.</li>
-          </ol>
-        </div>
-        <div class="shot" data-full="images/07-klausimu-bankas.jpg">
-          <img src="images/07-klausimu-bankas.jpg" alt="Klausimų banko lentelė su importuotais klausimais, autoriumi ir data" loading="lazy">
-          <span class="zoomtag">🔍 Padidinti</span>
-        </div>
-        <p class="step-see"><b>Ką turite pamatyti?</b> Lentelę su visais importuotais klausimais, kiekvienam nurodyta būsena „Paruoštas“, versija „v1“ ir jūsų vardas kaip autorius.</p>
-        <div class="step-done">
-          <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Atlikta – galima tęsti
+      <article class="step-panel mo" data-index="7" data-kind="mo">
+        <div class="panel-grid">
+          <div class="panel-text">
+            <span class="step-tag">Moodle</span>
+            <h3>Importuotų klausimų patikrinimas</h3>
+            <p class="step-intro">Prieš naudodami klausimus, patikrinkite, ar jie visi atsirado banke.</p>
+            <div class="step-do">
+              <p>Atlikite:</p>
+              <ol>
+                <li>Importui pasibaigus, peržiūrėkite klausimų banko sąrašą.</li>
+                <li>Peržvelkite kiekvieno klausimo pavadinimą.</li>
+                <li>Įsitikinkite, kad prie kiekvieno matoma būsena „Paruoštas“.</li>
+              </ol>
+            </div>
+            <p class="step-see"><b>Ką turite pamatyti?</b> Lentelę su visais importuotais klausimais, kiekvienam nurodyta būsena „Paruoštas“, versija „v1“ ir jūsų vardas kaip autorius.</p>
+            <details class="video-toggle">
+              <summary>Pažiūrėti, kaip tai atliekama vaizdo pamokoje</summary>
+              <div class="video-mount" data-start="520"></div>
+              <a class="full-video-link" href="https://youtu.be/wtPYJjsMOTM" target="_blank" rel="noopener">Žiūrėti visą vaizdo pamoką ↗</a>
+            </details>
+            <div class="step-done">
+              <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Atlikta – galima tęsti
+            </div>
+          </div>
+          <div class="panel-media">
+            <div class="shot" data-full="images/07-klausimu-bankas.jpg">
+              <img src="images/07-klausimu-bankas.jpg" alt="Klausimų banko lentelė su importuotais klausimais, autoriumi ir data" loading="lazy">
+              <span class="zoomtag">🔍 Padidinti</span>
+            </div>
+          </div>
         </div>
       </article>
 
       <!-- STEP 8 -->
-      <article class="step-card mo reveal" id="step-8" data-dot="8" data-kind="mo">
-        <div class="step-head">
-          <div class="step-num">08</div>
-          <div><span class="step-tag">Moodle</span><h3>Klausimų pridėjimas į testą</h3></div>
-        </div>
-        <p class="step-intro">Klausimai jau banke. Dabar juos pridėsime į testą, kurį matys mokiniai.</p>
-        <div class="step-do">
-          <p>Atlikite:</p>
-          <ol>
-            <li>Grįžkite į savo testo puslapį ir spauskite „Įtraukti klausimą“.</li>
-            <li>Atsivėrusiame lange, ties „Atitinka → Kategorija“, pasirinkite savo klausimų kategoriją.</li>
-            <li>Spauskite „Įkelti pasirinktus klausimus į testą“.</li>
-          </ol>
-        </div>
-        <div class="shot" data-full="images/08-iklimas-i-testa.jpg">
-          <img src="images/08-iklimas-i-testa.jpg" alt="Langas Įtraukti iš klausimų banko pabaigoje su pasirinkta kategorija ir mygtuku Įkelti pasirinktus klausimus į testą" loading="lazy">
-          <span class="pin" style="left:33.8%; top:38.5%; width:11%; height:2.1%"></span>
-          <span class="pin-label" style="left:33.8%; top:44%">Spauskite čia</span>
-          <span class="zoomtag">🔍 Padidinti</span>
-        </div>
-        <p class="step-see"><b>Ką turite pamatyti?</b> Langą „Įtraukti iš klausimų banko pabaigoje“ su jūsų kategorijos pavadinimu ir klausimų skaičiumi skliausteliuose.</p>
-        <div class="callout help">
-          <b>Jeigu nematote šio mygtuko...</b>
-          Įsitikinkite, kad esate testo skirtuke „Klausimai“, o ne „Parametrai“ ar „Rezultatai“ — mygtukas „Įtraukti klausimą“ rodomas tik ten.
-        </div>
-        <div class="step-done">
-          <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Atlikta – galima tęsti
+      <article class="step-panel mo" data-index="8" data-kind="mo">
+        <div class="panel-grid">
+          <div class="panel-text">
+            <span class="step-tag">Moodle</span>
+            <h3>Klausimų pridėjimas į testą</h3>
+            <p class="step-intro">Klausimai jau banke. Dabar juos pridėsime į testą, kurį matys mokiniai.</p>
+            <div class="step-do">
+              <p>Atlikite:</p>
+              <ol>
+                <li>Grįžkite į savo testo puslapį ir spauskite „Įtraukti klausimą“.</li>
+                <li>Atsivėrusiame lange, ties „Atitinka → Kategorija“, pasirinkite savo klausimų kategoriją.</li>
+                <li>Spauskite „Įkelti pasirinktus klausimus į testą“.</li>
+              </ol>
+            </div>
+            <p class="step-see"><b>Ką turite pamatyti?</b> Langą „Įtraukti iš klausimų banko pabaigoje“ su jūsų kategorijos pavadinimu ir klausimų skaičiumi skliausteliuose.</p>
+            <div class="callout help">
+              <b>Jeigu nematote šio mygtuko...</b>
+              Įsitikinkite, kad esate testo skirtuke „Klausimai“, o ne „Parametrai“ ar „Rezultatai“ — mygtukas „Įtraukti klausimą“ rodomas tik ten.
+            </div>
+            <details class="video-toggle">
+              <summary>Pažiūrėti, kaip tai atliekama vaizdo pamokoje</summary>
+              <div class="video-mount" data-start="560"></div>
+              <a class="full-video-link" href="https://youtu.be/wtPYJjsMOTM" target="_blank" rel="noopener">Žiūrėti visą vaizdo pamoką ↗</a>
+            </details>
+            <div class="step-done">
+              <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Atlikta – galima tęsti
+            </div>
+          </div>
+          <div class="panel-media">
+            <div class="shot" data-full="images/08-iklimas-i-testa.jpg">
+              <img src="images/08-iklimas-i-testa.jpg" alt="Langas Įtraukti iš klausimų banko pabaigoje su pasirinkta kategorija ir mygtuku Įkelti pasirinktus klausimus į testą" loading="lazy">
+              <span class="pin" style="left:33.8%; top:38.5%; width:11%; height:2.1%"></span>
+              <span class="pin-label" style="left:33.8%; top:44%">Spauskite čia</span>
+              <span class="zoomtag">🔍 Padidinti</span>
+            </div>
+          </div>
         </div>
       </article>
 
       <!-- STEP 9 -->
-      <article class="step-card mo reveal" id="step-9" data-dot="9" data-kind="mo">
-        <div class="step-head">
-          <div class="step-num">09</div>
-          <div><span class="step-tag">Moodle</span><h3>Galutinis patikrinimas</h3></div>
-        </div>
-        <p class="step-intro">Prieš skelbdami testą, peržiūrėkite jį patys.</p>
-        <div class="step-do">
-          <p>Atlikite:</p>
-          <ol>
-            <li>Atidarykite testą peržiūros arba bandymo režimu.</li>
-            <li>Pereikite per kelis klausimus naudodami „Testo naršymas“ tinklelį.</li>
-            <li>Patikrinkite, ar atsakymų variantai rodomi teisingai ir suprantamai.</li>
-          </ol>
-        </div>
-        <div class="shot" data-full="images/09-galutinis-patikrinimas.jpg">
-          <img src="images/09-galutinis-patikrinimas.jpg" alt="Veikiantis Moodle testas su klausimu ir Testo naršymas tinkleliu dešinėje" loading="lazy">
-          <span class="zoomtag">🔍 Padidinti</span>
-        </div>
-        <p class="step-see"><b>Ką turite pamatyti?</b> Klausimą su keliais atsakymų variantais, o dešinėje — „Testo naršymas“ tinklelį, kuriame matote visus klausimų numerius.</p>
-        <div class="step-done">
-          <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Atlikta – galima tęsti
+      <article class="step-panel mo" data-index="9" data-kind="mo">
+        <div class="panel-grid">
+          <div class="panel-text">
+            <span class="step-tag">Moodle</span>
+            <h3>Galutinis patikrinimas</h3>
+            <p class="step-intro">Prieš skelbdami testą, peržiūrėkite jį patys.</p>
+            <div class="step-do">
+              <p>Atlikite:</p>
+              <ol>
+                <li>Atidarykite testą peržiūros arba bandymo režimu.</li>
+                <li>Pereikite per kelis klausimus naudodami „Testo naršymas“ tinklelį.</li>
+                <li>Patikrinkite, ar atsakymų variantai rodomi teisingai ir suprantamai.</li>
+              </ol>
+            </div>
+            <p class="step-see"><b>Ką turite pamatyti?</b> Klausimą su keliais atsakymų variantais, o dešinėje — „Testo naršymas“ tinklelį, kuriame matote visus klausimų numerius.</p>
+            <div class="checkpoint">
+              <h4>✓ Pasitikrinkite prieš tęsdami</h4>
+              <ul>
+                <li>Ar visi klausimai teste rodomi teisinga tvarka?</li>
+                <li>Ar atsakymų variantai suprantami, be klaidų?</li>
+                <li>Ar testo pavadinimas aiškus mokiniams?</li>
+              </ul>
+              <p class="go">Testas jau visiškai veikiantis. Toliau — nebūtinas, bet rekomenduojamas žingsnis: gražus aprašymas mokiniams.</p>
+            </div>
+            <details class="video-toggle">
+              <summary>Pažiūrėti, kaip tai atliekama vaizdo pamokoje</summary>
+              <div class="video-mount" data-start="630"></div>
+              <a class="full-video-link" href="https://youtu.be/wtPYJjsMOTM" target="_blank" rel="noopener">Žiūrėti visą vaizdo pamoką ↗</a>
+            </details>
+            <div class="step-done">
+              <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Atlikta – galima tęsti
+            </div>
+          </div>
+          <div class="panel-media">
+            <div class="shot" data-full="images/09-galutinis-patikrinimas.jpg">
+              <img src="images/09-galutinis-patikrinimas.jpg" alt="Veikiantis Moodle testas su klausimu ir Testo naršymas tinkleliu dešinėje" loading="lazy">
+              <span class="zoomtag">🔍 Padidinti</span>
+            </div>
+          </div>
         </div>
       </article>
 
-    </div>
-
-    <div class="checkpoint reveal">
-      <h4>✓ Pasitikrinkite prieš tęsdami</h4>
-      <ul>
-        <li>Ar visi klausimai teste rodomi teisinga tvarka?</li>
-        <li>Ar atsakymų variantai suprantami, be klaidų?</li>
-        <li>Ar testo pavadinimas aiškus mokiniams?</li>
-      </ul>
-      <p class="go">Testas jau visiškai veikiantis. Toliau — nebūtinas, bet rekomenduojamas žingsnis: gražus aprašymas mokiniams.</p>
-    </div>
-
-    <div class="steps">
-
       <!-- STEP 10 -->
-      <article class="step-card ai reveal" id="step-10" data-dot="10" data-kind="ai">
-        <div class="step-head">
-          <div class="step-num">10</div>
-          <div><span class="step-tag">ChatGPT</span><h3>Testo aprašymo parengimas</h3></div>
-        </div>
-        <p class="step-intro">Aiškus aprašymas padeda mokiniams suprasti testą. Jį taip pat parengs DI.</p>
-        <div class="step-do">
-          <p>Atlikite:</p>
-          <ol>
-            <li>Grįžkite į ChatGPT pokalbį.</li>
-            <li>Paprašykite parengti trumpą testo aprašymą: tikslą, taisykles ir naudingus patarimus mokiniams.</li>
-            <li>Nukopijuokite gautą tekstą.</li>
-          </ol>
-        </div>
-        <div class="shot" data-full="images/10-aprasymo-parengimas.jpg">
-          <img src="images/10-aprasymo-parengimas.jpg" alt="ChatGPT sugeneruotas testo aprašymas su antraštėmis Testo tikslas, Testo informacija, Prieš pradėdami, Sėkmės" loading="lazy">
-          <span class="zoomtag">🔍 Padidinti</span>
-        </div>
-        <p class="step-see"><b>Ką turite pamatyti?</b> Suformatuotą tekstą su aiškiomis antraštėmis (pvz. „Testo tikslas“, „Testo informacija“, „Prieš pradėdami“, „Sėkmės!“).</p>
-        <div class="step-done">
-          <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Atlikta – galima tęsti
+      <article class="step-panel ai" data-index="10" data-kind="ai">
+        <div class="panel-grid">
+          <div class="panel-text">
+            <span class="step-tag">ChatGPT</span>
+            <h3>Testo aprašymo parengimas</h3>
+            <p class="step-intro">Aiškus aprašymas padeda mokiniams suprasti testą. Jį taip pat parengs DI.</p>
+            <div class="step-do">
+              <p>Atlikite:</p>
+              <ol>
+                <li>Grįžkite į ChatGPT pokalbį.</li>
+                <li>Paprašykite parengti trumpą testo aprašymą: tikslą, taisykles ir naudingus patarimus mokiniams.</li>
+                <li>Nukopijuokite gautą tekstą.</li>
+              </ol>
+            </div>
+            <p class="step-see"><b>Ką turite pamatyti?</b> Suformatuotą tekstą su aiškiomis antraštėmis (pvz. „Testo tikslas“, „Testo informacija“, „Prieš pradėdami“, „Sėkmės!“).</p>
+            <details class="video-toggle">
+              <summary>Pažiūrėti, kaip tai atliekama vaizdo pamokoje</summary>
+              <div class="video-mount" data-start="720"></div>
+              <a class="full-video-link" href="https://youtu.be/wtPYJjsMOTM" target="_blank" rel="noopener">Žiūrėti visą vaizdo pamoką ↗</a>
+            </details>
+            <div class="step-done">
+              <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Atlikta – galima tęsti
+            </div>
+          </div>
+          <div class="panel-media">
+            <div class="shot" data-full="images/10-aprasymo-parengimas.jpg">
+              <img src="images/10-aprasymo-parengimas.jpg" alt="ChatGPT sugeneruotas testo aprašymas su antraštėmis Testo tikslas, Testo informacija, Prieš pradėdami, Sėkmės" loading="lazy">
+              <span class="zoomtag">🔍 Padidinti</span>
+            </div>
+          </div>
         </div>
       </article>
 
       <!-- STEP 11 -->
-      <article class="step-card mo reveal" id="step-11" data-dot="11" data-kind="mo">
-        <div class="step-head">
-          <div class="step-num">11</div>
-          <div><span class="step-tag">Moodle</span><h3>Aprašymo įkėlimas</h3></div>
-        </div>
-        <p class="step-intro">Paskutinis žingsnis: įkelkite aprašymą į testą.</p>
-        <div class="step-do">
-          <p>Atlikite:</p>
-          <ol>
-            <li>Testo nustatymuose atsidarykite lauką „Aprašymas“.</li>
-            <li>Įrankių juostoje pasirinkite „Įrankiai“ → „Šaltinio kodas“.</li>
-            <li>Įklijuokite nukopijuotą tekstą ir spauskite „Įrašyti“.</li>
-          </ol>
-        </div>
-        <div class="shot" data-full="images/11-aprasymo-ikelimas.jpg">
-          <img src="images/11-aprasymo-ikelimas.jpg" alt="Moodle teksto redaktoriaus įrankių meniu su pasirinkimu Šaltinio kodas" loading="lazy">
-          <span class="zoomtag">🔍 Padidinti</span>
-        </div>
-        <p class="step-see"><b>Ką turite pamatyti?</b> Atvirą įrankių meniu su punktu „Šaltinio kodas“ virš aprašymo teksto lauko.</p>
-        <div class="step-done">
-          <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Atlikta – testas visiškai paruoštas!
+      <article class="step-panel mo" data-index="11" data-kind="mo">
+        <div class="panel-grid">
+          <div class="panel-text">
+            <span class="step-tag">Moodle</span>
+            <h3>Aprašymo įkėlimas</h3>
+            <p class="step-intro">Paskutinis žingsnis: įkelkite aprašymą į testą.</p>
+            <div class="step-do">
+              <p>Atlikite:</p>
+              <ol>
+                <li>Testo nustatymuose atsidarykite lauką „Aprašymas“.</li>
+                <li>Įrankių juostoje pasirinkite „Įrankiai“ → „Šaltinio kodas“.</li>
+                <li>Įklijuokite nukopijuotą tekstą ir spauskite „Įrašyti“.</li>
+              </ol>
+            </div>
+            <p class="step-see"><b>Ką turite pamatyti?</b> Atvirą įrankių meniu su punktu „Šaltinio kodas“ virš aprašymo teksto lauko.</p>
+            <details class="video-toggle">
+              <summary>Pažiūrėti, kaip tai atliekama vaizdo pamokoje</summary>
+              <div class="video-mount" data-start="810"></div>
+              <a class="full-video-link" href="https://youtu.be/wtPYJjsMOTM" target="_blank" rel="noopener">Žiūrėti visą vaizdo pamoką ↗</a>
+            </details>
+            <div class="step-done">
+              <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#1FA98A"/><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Atlikta – testas visiškai paruoštas!
+            </div>
+          </div>
+          <div class="panel-media">
+            <div class="shot" data-full="images/11-aprasymo-ikelimas.jpg">
+              <img src="images/11-aprasymo-ikelimas.jpg" alt="Moodle teksto redaktoriaus įrankių meniu su pasirinkimu Šaltinio kodas" loading="lazy">
+              <span class="zoomtag">🔍 Padidinti</span>
+            </div>
+          </div>
         </div>
       </article>
 
     </div>
 
-  </section>
+    <div class="learn-nav">
+      <button class="nav-btn" id="prevBtn">← Ankstesnis</button>
+      <div class="nav-counter"><span id="curStepBottom">1</span> / 11</div>
+      <button class="nav-btn primary" id="nextBtn">Kitas žingsnis →</button>
+    </div>
 
-  <section class="finish reveal">
+  </div>
+</section>
+
+<div class="wrap">
+
+  <section class="finish reveal" id="finish">
     <h2>Viskas atlikta!</h2>
     <p>Turite pilnai veikiantį Moodle testą: klausimus parengė ir XML formatu eksportavo ChatGPT, o jūs juos importavote į klausimų banką, pridėjote į testą ir patikrinote. Mokiniai jau gali jį spręsti.</p>
     <div class="finish-flow">
@@ -671,7 +808,7 @@
 
 <script>
 (function(){
-  // ---- reveal on scroll ----
+  // ---- reveal on scroll (hero / legend / flow / video / finish) ----
   var revealEls = document.querySelectorAll('.reveal');
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(en){
@@ -680,42 +817,103 @@
   }, { threshold:.12, rootMargin:'0px 0px -60px 0px' });
   revealEls.forEach(function(el){ io.observe(el); });
 
-  // ---- progress bar ----
-  var fill = document.getElementById('progressFill');
-  function updateProgress(){
-    var h = document.documentElement;
-    var scrolled = h.scrollTop;
-    var max = h.scrollHeight - h.clientHeight;
-    fill.style.width = (max>0 ? (scrolled/max*100) : 0) + '%';
-  }
-  document.addEventListener('scroll', updateProgress, { passive:true });
-  updateProgress();
+  // ======================================================
+  // INTERACTIVE LEARNING MODE controller
+  // ======================================================
+  var panels = Array.prototype.slice.call(document.querySelectorAll('.step-panel'));
+  var total = panels.length;
+  var current = 1;
 
-  // ---- step dots nav ----
-  var cards = document.querySelectorAll('[data-dot]');
-  var dotsWrap = document.getElementById('stepDots');
-  var dotEls = [];
-  cards.forEach(function(c){
+  var curTop = document.getElementById('curStepTop');
+  var curBottom = document.getElementById('curStepBottom');
+  var fill = document.getElementById('learnFill');
+  var prevBtn = document.getElementById('prevBtn');
+  var nextBtn = document.getElementById('nextBtn');
+  var dotsWrap = document.getElementById('learnDots');
+  var finishSection = document.getElementById('finish');
+
+  var dots = panels.map(function(p, i){
     var b = document.createElement('button');
-    b.textContent = c.getAttribute('data-dot');
-    b.className = c.getAttribute('data-kind')==='ai' ? 'ai' : '';
-    b.addEventListener('click', function(){
-      c.scrollIntoView({behavior:'smooth', block:'start'});
-    });
+    b.textContent = (i+1);
+    b.className = p.getAttribute('data-kind');
+    b.addEventListener('click', function(){ goTo(i+1); });
     dotsWrap.appendChild(b);
-    dotEls.push({el:b, target:c});
+    return b;
   });
-  var dotIo = new IntersectionObserver(function(entries){
-    entries.forEach(function(en){
-      var match = dotEls.find(function(d){ return d.target===en.target; });
-      if (!match) return;
-      if (en.isIntersecting){
-        dotEls.forEach(function(d){ d.el.classList.remove('active'); });
-        match.el.classList.add('active');
+
+  function updateUI(){
+    curTop.textContent = current;
+    curBottom.textContent = current;
+    fill.style.width = (current/total*100) + '%';
+    dots.forEach(function(d, i){ d.classList.toggle('active', (i+1)===current); });
+    prevBtn.disabled = (current===1);
+    if (current===total){
+      nextBtn.innerHTML = 'Į pabaigą ↓';
+    } else {
+      nextBtn.innerHTML = 'Kitas žingsnis →';
+    }
+  }
+
+  function goTo(n){
+    if (n<1 || n>total || n===current){
+      if (n===total && current===total){ finishSection.scrollIntoView({behavior:'smooth', block:'start'}); }
+      return;
+    }
+    var oldPanel = panels[current-1];
+    var newPanel = panels[n-1];
+    oldPanel.classList.add('anim-out');
+    setTimeout(function(){
+      oldPanel.classList.remove('active','anim-out');
+      newPanel.classList.add('active','anim-in');
+      requestAnimationFrame(function(){
+        setTimeout(function(){ newPanel.classList.remove('anim-in'); }, 400);
+      });
+    }, 180);
+    current = n;
+    updateUI();
+  }
+
+  prevBtn.addEventListener('click', function(){ goTo(current-1); });
+  nextBtn.addEventListener('click', function(){
+    if (current===total){ finishSection.scrollIntoView({behavior:'smooth', block:'start'}); return; }
+    goTo(current+1);
+  });
+
+  document.addEventListener('keydown', function(e){
+    if (e.key==='ArrowRight'){ goTo(current+1); }
+    else if (e.key==='ArrowLeft'){ goTo(current-1); }
+  });
+
+  document.getElementById('startBtn').addEventListener('click', function(e){
+    e.preventDefault();
+    document.getElementById('learnMode').scrollIntoView({behavior:'smooth', block:'start'});
+  });
+
+  updateUI();
+
+  // ---- lazy-load in-step YouTube embeds ----
+  document.querySelectorAll('.video-toggle').forEach(function(d){
+    d.addEventListener('toggle', function(){
+      if (d.open){
+        var mount = d.querySelector('.video-mount');
+        if (!mount.dataset.loaded){
+          var start = mount.getAttribute('data-start');
+          var box = document.createElement('div');
+          box.style.cssText = 'position:relative;width:100%;padding-top:56.25%;border-radius:12px;overflow:hidden;margin:2px 0 14px;background:#000;';
+          var iframe = document.createElement('iframe');
+          iframe.src = 'https://www.youtube.com/embed/wtPYJjsMOTM?start=' + start;
+          iframe.title = 'Vaizdo pamokos fragmentas';
+          iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+          iframe.allowFullscreen = true;
+          iframe.loading = 'lazy';
+          iframe.style.cssText = 'position:absolute; inset:0; width:100%; height:100%; border:0;';
+          box.appendChild(iframe);
+          mount.appendChild(box);
+          mount.dataset.loaded = '1';
+        }
       }
     });
-  }, { threshold:.5, rootMargin:'-84px 0px -50% 0px' });
-  cards.forEach(function(c){ dotIo.observe(c); });
+  });
 
   // ---- lightbox ----
   var lb = document.getElementById('lightbox');
